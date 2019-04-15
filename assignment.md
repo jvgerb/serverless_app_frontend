@@ -144,7 +144,7 @@ English
 
 ## 5. Provided by us
 
-- [UI design](https://xd.adobe.com/view/1bec5a27-5986-42f1-539a-3d2569590d83-6ddd/?fullscreen).
+- [UI design](https://xd.adobe.com/view/ef0edf08-563a-497d-5c26-926a59366835-993f/?fullscreen).
 - Github Repository to pull from.
 
 ## 6. Compensation
