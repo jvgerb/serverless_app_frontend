@@ -88,7 +88,7 @@ The list of pages are listed below:
 
 | __Results__              | __Description__                                              |
 | ------------------------ | ------------------------------------------------------------ |
-| Source Code | Source code written in Vuejs containing all the UI views described above | 
+| Source Code | Source code written in Vuejs containing all the UI views described above |
 | Documentation            | A documentation describing the resources and the approach as well as the elaborations on the javascript/vue code. Follow the example described at [our repo.](./docu_template.md) |
 
 ## 3. Details of the assignment
@@ -100,7 +100,7 @@ The list of pages are listed below:
 ### 3.1 Constraints
 
 Previous experience with the following technologies is MANDATORY:
-  
+
 - Javascript
 - Vuejs
 - Typescript
@@ -141,10 +141,10 @@ English
 
 - Create UI views using Vue.js.
 - Create views with forms to perform read and write operations as explained by the access patterns and following the guidelines of the [UI design](https://xd.adobe.com/view/ef0edf08-563a-497d-5c26-926a59366835-993f/?fullscreen).
-  
+
 ## 5. Provided by us
 
-- [UI design](https://xd.adobe.com/view/ef0edf08-563a-497d-5c26-926a59366835-993f/?fullscreen).
+- [UI design](https://xd.adobe.com/view/1bec5a27-5986-42f1-539a-3d2569590d83-6ddd/?fullscreen).
 - Github Repository to pull from.
 
 ## 6. Compensation
