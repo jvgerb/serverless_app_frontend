@@ -10,27 +10,30 @@
   "dependencies": {
     "core-js": "^3.0.1",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.5",
+    "vue-class-component": "^7.0.2",
+    "vue-property-decorator": "^8.1.0",
+    "vue-router": "^3.0.6",
     "vuex": "^3.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",
-    "@vue/cli-plugin-eslint": "^3.6.0",
+    "@vue/cli-plugin-typescript": "^3.6.0",
     "@vue/cli-service": "^3.6.0",
-    "@vue/eslint-config-prettier": "^4.0.1",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.2.2",
     "lint-staged": "^8.1.5",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
+    "typescript": "^3.4.3",
     "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,vue}": [
+    "*.ts": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
       "vue-cli-service lint",
       "git add"
     ]
