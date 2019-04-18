@@ -1,9 +1,13 @@
 @import "vars";
-@import "/icomoon/style.css";
+@import "normalize";
+@import url("assets/icomoon/style.css");
 
 [class^="icon-"],
 [class*=" icon-"] {
   display: inline-block;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
 }
 
 html,
@@ -29,7 +33,7 @@ h3 {
 
 h1 {
   font-size: 30px;
-  color: $accent-color;
+  color: var(--accent-color);
 }
 h2 {
   font-size: 28px;
@@ -37,5 +41,5 @@ h2 {
 }
 h3 {
   font-size: 22px;
-  color: $accent-color;
+  color: var(--accent-color);
 }
