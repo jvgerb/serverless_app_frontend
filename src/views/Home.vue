@@ -38,5 +38,6 @@ export default class Home extends Vue {}
 
 .content {
   grid-area: content;
+  background-color: var(--second-bg-color);
 }
 </style>

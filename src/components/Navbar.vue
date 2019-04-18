@@ -103,13 +103,13 @@ ul {
       height: 100%;
       transition: all 0.4s;
     }
-    &.active a,
-    a:hover {
+    &.active a {
       background-color: var(--second-bg-color);
       color: black;
-      &:hover {
-        opacity: 0.8;
-      }
+    }
+    a:hover:not(.active) {
+      background-color: var(--accent-hover-color);
+      color: black;
     }
   }
 }
