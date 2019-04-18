@@ -1,0 +1,34 @@
+@import "./vars";
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+}
+
+@font-face {
+  font-family: "Antonio-Light";
+  src: url("/fonts/Antonio-Light.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Antonio-Light";
+}
+
+h1 {
+  font-size: 30px;
+  color: $accent-color;
+}
+h2 {
+  font-size: 28px;
+  color: #b4b4b4;
+}
+h3 {
+  font-size: 22px;
+  color: $accent-color;
+}

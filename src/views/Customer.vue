@@ -1,14 +1,14 @@
 <template></template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class Customer extends Vue {}
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/vars";
+@import '../assets/scss/vars';
 </style>
