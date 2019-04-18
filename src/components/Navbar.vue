@@ -1,19 +1,11 @@
 <template>
   <nav>
-    <ul class="tabs-side">
-      <li class="active">
-        <a href="#">Control Unit</a>
-      </li>
-      <li>
-        <a href="#">Control Unit List</a>
-      </li>
-      <li>
-        <a href="#">Repair List</a>
-      </li>
-      <li>
-        <a href="#">Summary</a>
-      </li>
-    </ul>
+    <div class="tabs-side">
+      <a href="#" class="active">Control Unit</a>
+      <a href="#">Control Unit List</a>
+      <a href="#">Repair List</a>
+      <a href="#">Summary</a>
+    </div>
     <ul class="account-side">
       <li>
         <input ref="searchInput" v-show="searchVisible" class="search-input" type="text">
@@ -51,10 +43,9 @@ nav {
   display: grid;
   grid-template-columns: auto 200px; //66px 297px
   background: var(--nav-bg-gradient);
-}
-ul {
   height: var(--nav-height);
 }
+
 .account-side {
   display: grid;
   grid-template-columns: auto auto auto;
@@ -85,39 +76,33 @@ ul {
   }
 }
 .tabs-side {
-  li {
+  a {
     min-width: 40px;
     display: inline-block;
     height: 43px;
     margin-left: 5px;
-    align-self: center;
     margin-top: 42px;
     line-height: 3;
-    background-color: transparent;
-    a {
-      border-radius: 3px 3px 0 0;
-      padding: 0 30px;
-      color: white;
-      text-decoration: none;
-      display: block;
-      height: 100%;
-      transition: all 0.4s;
-    }
-    &.active a {
-      background-color: var(--second-bg-color);
-      color: black;
-    }
-    a:hover:not(.active) {
-      background-color: var(--accent-hover-color);
-      color: black;
-    }
+    border-radius: 3px 3px 0 0;
+    padding: 0 30px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.4s;
   }
-}
-.search-input {
-  position: absolute;
-  top: 0px;
-  right: 40px;
-  height: 26px;
-  width: 200px;
+  a.active {
+    background-color: var(--second-bg-color);
+    color: black;
+  }
+  a:hover:not(.active) {
+    background-color: var(--accent-hover-color);
+    color: black;
+  }
+  .search-input {
+    position: absolute;
+    top: 0px;
+    right: 40px;
+    height: 26px;
+    width: 200px;
+  }
 }
 </style>

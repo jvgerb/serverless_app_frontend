@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
+import Main from './views/Main.vue';
 import Customer from './views/Customer.vue';
 
 Vue.use(Router);
@@ -8,15 +8,26 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home,
+      path: '/:menu/:submenu/:tab',
+      component: Main,
       children: [
         {
-          path: '/customer',
-          component: Customer
-        }
+          path: '/:menu/:submenu',
+          redirect: 'customer'
+        },
       ]
+    },
+    {
+      path: '/:menu/:submenu',
+      redirect: 'customer'
+    },
+    {
+      path: '/:menu/',
+      redirect: 'customer/customer'
+    },
+    {
+      path: '/',
+      redirect: 'customer/customer/customer'
     }
   ],
 });

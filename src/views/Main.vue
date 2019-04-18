@@ -16,7 +16,7 @@ import Sidebar from '@/components/Sidebar.vue';
 @Component({
   components: { Navbar, Sidebar },
 })
-export default class Home extends Vue {}
+export default class Main extends Vue {}
 </script>
 
 <style lang="scss" scoped>
