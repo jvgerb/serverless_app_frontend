@@ -1,4 +1,11 @@
-@import "./vars";
+@import "vars";
+@import "/icomoon/style.css";
+
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+}
+
 html,
 body {
   margin: 0;
