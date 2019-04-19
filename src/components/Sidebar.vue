@@ -19,6 +19,15 @@
         <a href="#">
           <i class="icon-no-icon"></i>
         </a>
+        <a href="#">
+          <i class="icon-no-icon"></i>
+        </a>
+        <a href="#">
+          <i class="icon-no-icon"></i>
+        </a>
+        <a href="#">
+          <i class="icon-no-icon"></i>
+        </a>
       </div>
       <div class="bottom-menu">
         <a href="#">

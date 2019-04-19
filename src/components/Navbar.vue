@@ -51,6 +51,7 @@ nav {
   grid-template-columns: auto auto auto;
   align-items: center;
   justify-content: space-around;
+  height: var(--nav-height);
   color: white;
   li {
     position: relative;
@@ -74,6 +75,13 @@ nav {
     right: -20px;
     background-color: #bc2026;
   }
+  .search-input {
+    position: absolute;
+    top: 0px;
+    right: 40px;
+    height: 26px;
+    width: 200px;
+  }
 }
 .tabs-side {
   a {
@@ -82,7 +90,7 @@ nav {
     height: 43px;
     margin-left: 5px;
     margin-top: 42px;
-    line-height: 3;
+    line-height: 43px;
     border-radius: 3px 3px 0 0;
     padding: 0 30px;
     color: white;
@@ -96,13 +104,6 @@ nav {
   a:hover:not(.active) {
     background-color: var(--accent-hover-color);
     color: black;
-  }
-  .search-input {
-    position: absolute;
-    top: 0px;
-    right: 40px;
-    height: 26px;
-    width: 200px;
   }
 }
 </style>

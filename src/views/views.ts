@@ -1,8 +1,9 @@
 import Customer from './Customer.vue';
+import Contact from './Customer/Contact.vue';
 
 
 export const views = {
-    Customer
+    Customer, Contact
 };
 
 export const map = {
