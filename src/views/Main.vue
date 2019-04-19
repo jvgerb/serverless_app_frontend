@@ -3,7 +3,10 @@
     <Navbar class="navbar"></Navbar>
     <Sidebar class="sidebar"></Sidebar>
     <div class="content">
-      <router-view></router-view>
+      <h1>{{currentContent.name}}</h1>
+      <div class="view-container">
+        <component :is="currentContent.viewName"></component>
+      </div>
     </div>
   </div>
 </template>
@@ -12,11 +15,19 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Navbar from '@/components/Navbar.vue';
 import Sidebar from '@/components/Sidebar.vue';
+import { views } from './views';
 
 @Component({
-  components: { Navbar, Sidebar },
+  components: { Navbar, Sidebar, ...views },
 })
-export default class Main extends Vue {}
+export default class Main extends Vue {
+  get currentContent() {
+    return {
+      name: 'Customer',
+      viewName: 'Customer',
+    };
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -39,5 +50,16 @@ export default class Main extends Vue {}
 .content {
   grid-area: content;
   background-color: var(--second-bg-color);
+  h1 {
+    margin: 0;
+    padding-left: 50px;
+    height: 75px;
+    line-height: 75px;
+    box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .view-container {
+    padding: 28px 45px;
+  }
 }
 </style>
