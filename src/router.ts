@@ -8,26 +8,15 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/:menu/:submenu/:tab',
+      path: '/',
       component: Main,
       children: [
         {
-          path: '/:menu/:submenu',
-          redirect: 'customer'
-        },
+          path: 'customer',
+          name: 'Customer',
+          component: Customer
+        }
       ]
-    },
-    {
-      path: '/:menu/:submenu',
-      redirect: 'customer'
-    },
-    {
-      path: '/:menu/',
-      redirect: 'customer/customer'
-    },
-    {
-      path: '/',
-      redirect: 'customer/customer/customer'
     }
   ],
 });
