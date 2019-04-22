@@ -25,9 +25,9 @@ import { views, routes } from './views';
 })
 export default class Main extends Vue {
   get currentContent() {
-    const menuRoute = routes.find(
-      (x: any) => this.$route.params.menu.toLowerCase() == x.link
-    );
+    const menuRoute =
+      this.$route.params.menu &&
+      routes.find((x: any) => this.$route.params.menu.toLowerCase() == x.link);
 
     const submenuRoute =
       menuRoute &&
