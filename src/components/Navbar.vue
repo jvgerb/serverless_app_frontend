@@ -1,10 +1,11 @@
 <template>
   <nav>
     <div class="tabs-side">
-      <a href="#" class="active">Control Unit</a>
-      <a href="#">Control Unit List</a>
-      <a href="#">Repair List</a>
-      <a href="#">Summary</a>
+      <router-link
+        v-for="route in tabRoutes"
+        :key="route.name"
+        :to="'/'+$route.params.menu +'/'+$route.params.submenu+'/'+ route.link"
+      >{{route.name}}</router-link>
     </div>
     <ul class="account-side">
       <li>
@@ -24,12 +25,28 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { routes } from '../views/views';
 
 @Component({
   components: {},
 })
 export default class Navbar extends Vue {
   searchVisible = false;
+
+  get tabRoutes() {
+    const menuRoute = routes.find(
+      (x: any) => this.$route.params.menu.toLowerCase() == x.link
+    );
+
+    const submenuRoute =
+      menuRoute &&
+      this.$route.params.submenu &&
+      menuRoute.routes.find(
+        (x: any) => this.$route.params.submenu.toLowerCase() == x.link
+      );
+
+    return (submenuRoute && submenuRoute.routes) || [];
+  }
 
   toggleSearchInput() {
     this.searchVisible = !this.searchVisible;
@@ -41,9 +58,11 @@ export default class Navbar extends Vue {
 <style lang="scss" scoped>
 nav {
   display: grid;
-  grid-template-columns: auto 200px; //66px 297px
-  background: var(--nav-bg-gradient);
+  grid-template-columns: auto 200px;
+  position: sticky;
+  top: 0;
   height: var(--nav-height);
+  background: var(--nav-bg-gradient);
 }
 
 .account-side {
@@ -84,8 +103,10 @@ nav {
   }
 }
 .tabs-side {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
   a {
-    min-width: 40px;
     display: inline-block;
     height: 43px;
     margin-left: 5px;
@@ -97,11 +118,11 @@ nav {
     text-decoration: none;
     transition: all 0.4s;
   }
-  a.active {
+  a.router-link-active {
     background-color: var(--second-bg-color);
     color: black;
   }
-  a:hover:not(.active) {
+  a:hover:not(.router-link-active) {
     background-color: var(--accent-hover-color);
     color: black;
   }

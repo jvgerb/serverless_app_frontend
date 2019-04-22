@@ -42,6 +42,9 @@ export default class Rating extends Vue {
     stroke: var(--accent-color);
     fill: white;
     cursor: pointer;
+    &:first-child {
+      margin-left: 0;
+    }
     &.rate {
       fill: var(--accent-color);
     }

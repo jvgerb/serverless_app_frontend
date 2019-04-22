@@ -3,7 +3,7 @@
     <Navbar class="navbar"></Navbar>
     <Sidebar class="sidebar"></Sidebar>
     <div class="content">
-      <h1>{{currentContent.name}}</h1>
+      <h1>{{currentContent.title}}</h1>
       <div class="view-container">
         <component :is="currentContent.viewName"></component>
       </div>
@@ -15,16 +15,41 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Navbar from '@/components/Navbar.vue';
 import Sidebar from '@/components/Sidebar.vue';
-import { views } from './views';
+import { views, routes } from './views';
 
 @Component({
   components: { Navbar, Sidebar, ...views },
 })
 export default class Main extends Vue {
   get currentContent() {
+    const menuRoute = routes.find(
+      (x: any) => this.$route.params.menu.toLowerCase() == x.link
+    );
+
+    const submenuRoute =
+      menuRoute &&
+      this.$route.params.submenu &&
+      menuRoute.routes.find(
+        (x: any) => this.$route.params.submenu.toLowerCase() == x.link
+      );
+
+    const tabRoute =
+      submenuRoute &&
+      this.$route.params.tab &&
+      submenuRoute.routes.find(
+        (x: any) => this.$route.params.tab.toLowerCase() == x.link
+      );
+
+    const currentRoute = tabRoute || {};
+
+    const currentViewName = tabRoute && tabRoute.name.replace(/ /g, '');
+
     return {
-      name: 'Contact Person',
-      viewName: 'ContactPerson',
+      title: currentRoute.title,
+      viewName:
+        Object.keys(views).includes(currentViewName) && tabRoute
+          ? currentViewName
+          : 'ComingSoon',
     };
   }
 }

@@ -7,27 +7,9 @@
         </a>
       </div>
       <div class="middle-menu">
-        <a href="#">
+        <router-link v-for="route in menuRoutes" :key="route.name" :to="'/'+route.link">
           <i class="icon-no-icon"></i>
-        </a>
-        <a href="#" class="active">
-          <i class="icon-no-icon"></i>
-        </a>
-        <a href="#">
-          <i class="icon-no-icon"></i>
-        </a>
-        <a href="#">
-          <i class="icon-no-icon"></i>
-        </a>
-        <a href="#">
-          <i class="icon-no-icon"></i>
-        </a>
-        <a href="#">
-          <i class="icon-no-icon"></i>
-        </a>
-        <a href="#">
-          <i class="icon-no-icon"></i>
-        </a>
+        </router-link>
       </div>
       <div class="bottom-menu">
         <a href="#">
@@ -41,31 +23,40 @@
     <div class="submenu">
       <div class="top-submenu"></div>
       <div class="bottom-submenu">
-        <h2>POD</h2>
-        <a href="#">
-          <i class="icon-no-icon"></i>POD
-        </a>
-        <a href="#">
-          <i class="icon-no-icon"></i>Distribution Network
-        </a>
-        <a href="#" class="active">
-          <i class="icon-no-icon"></i>District Heating Station
-        </a>
-        <a href="#">
-          <i class="icon-no-icon"></i>Actuator
-        </a>
+        <h2>{{$route.params.menu}}</h2>
+        <router-link
+          v-for="route in submenuRoutes"
+          :key="route.name"
+          :to="'/'+$route.params.menu +'/'+route.link"
+        >
+          <i class="icon-no-icon"></i>
+          {{route.name}}
+        </router-link>
       </div>
     </div>
   </nav>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { routes } from '../views/views';
 
 @Component({
   components: {},
 })
-export default class Sidebar extends Vue {}
+export default class Sidebar extends Vue {
+  get menuRoutes() {
+    return routes;
+  }
+
+  get submenuRoutes() {
+    const menuRoute =
+      this.$route.params.menu &&
+      routes.find((x: any) => this.$route.params.menu.toLowerCase() == x.link);
+
+    return (menuRoute && menuRoute.routes) || [];
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -83,7 +74,7 @@ nav {
   grid-area: menu;
   display: grid;
   grid-template-columns: 66px;
-  grid-template-rows: 85px auto 150px;
+  grid-template-rows: var(--nav-height) auto 150px;
   grid-template-areas:
     'top-menu'
     'middle-menu'
@@ -95,7 +86,7 @@ nav {
   grid-area: submenu;
   display: grid;
   grid-template-columns: 300px;
-  grid-template-rows: 85px auto;
+  grid-template-rows: var(--nav-height) auto;
   grid-template-areas:
     'top-submenu'
     'bottom-submenu';
@@ -146,7 +137,7 @@ nav {
       color: var(--accent-color);
     }
 
-    &.active {
+    &.router-link-active {
       background-color: var(--second-bg-color);
       border-left: solid 2px var(--accent-color);
       color: var(--accent-color);
@@ -162,10 +153,14 @@ nav {
 .bottom-submenu {
   grid-area: bottom-submenu;
   box-shadow: 3px 0px 6px #d9d9d9;
-  z-index: 1;
+  overflow: auto;
+  height: calc(100vh - var(--nav-height));
+  padding-bottom: 30px;
+  box-sizing: border-box;
   h2 {
     margin: 32px 0;
     text-align: center;
+    text-transform: uppercase;
   }
   a {
     display: grid;
@@ -180,12 +175,12 @@ nav {
     background: var(--second-bg-color);
     font-size: 13px;
     border-radius: 3px;
-    &.active,
-    &.active i {
+    &.router-link-active,
+    &.router-link-active i {
       background: var(--accent-color);
       color: white;
     }
-    &:hover:not(.active) {
+    &:hover:not(.router-link-active) {
       background-color: var(--accent-hover-color);
     }
     i {

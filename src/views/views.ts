@@ -1,163 +1,339 @@
-import Customer from './Customer.vue';
+import ComingSoon from './ComingSoon.vue';
+import Customer from './Customer/Customer.vue';
 import ContactPerson from './Customer/ContactPerson.vue';
 
-
 export const views = {
-    Customer, ContactPerson
+    ComingSoon,
+    Customer,
+    ContactPerson,
 };
 
-export const map = {
-    Customer: {
-        'Customer': {
-            'Customer': {
-                icon: 'some_icon_name'
+export let routes: any[] = [
+    {
+        name: 'Customer',
+        icon: '',
+        routes: [
+            {
+                name: 'Customer',
+                icon: '',
+                routes: [
+                    { name: 'Customer', title: 'Customer', icon: '' },
+                    { name: 'Customer List', title: 'Customer List', icon: '' },
+                    {
+                        name: 'Customer Perfomance',
+                        title: 'Customer Perfomance',
+                        icon: '',
+                    },
+                ],
             },
-            'Customer List': {},
-            'Customer Perfomance': {},
-        },
-        'Contact Person': {
-            'Contact': {},
-            'Contact List': {},
-        },
-        'Representative': {
-            'Representative': {},
-            'Representative List': {},
-        },
-        'Contract': {
-            'Contract': {},
-            'Contract List': {},
-        },
+            {
+                name: 'Contact Person',
+                icon: '',
+                routes: [
+                    { name: 'Contact', title: 'Contact Person', icon: '' },
+                    { name: 'Contact List', title: 'Contact List', icon: '' },
+                ],
+            },
+            {
+                name: 'Representative',
+                icon: '',
+                routes: [
+                    { name: 'Representative', title: 'Representative', icon: '' },
+                    {
+                        name: 'Representative List',
+                        title: 'Representative List',
+                        icon: '',
+                    },
+                ],
+            },
+            {
+                name: 'Contract',
+                icon: '',
+                routes: [
+                    { name: 'Contract', title: 'Contract', icon: '' },
+                    { name: 'Contract List', title: 'Contract List', icon: '' },
+                ],
+            },
+        ],
     },
-    Supplier: {
-        'Supplier': {
-            'Supplier': {},
-            'Supplier List': {},
-        },
-        'Contact Person': {
-            'Contact': {},
-            'Contact List': {},
-        },
-        'Contract': {
-            'Contract': {},
-            'Contract List': {},
-        },
+    {
+        name: 'Supplier',
+        icon: '',
+        routes: [
+            {
+                name: 'Supplier',
+                icon: '',
+                routes: [
+                    { name: 'Supplier', title: 'Supplier', icon: '' },
+                    { name: 'Supplier List', title: 'Supplier List', icon: '' },
+                ],
+            },
+            {
+                name: 'Contact Person',
+                icon: '',
+                routes: [
+                    { name: 'Contact', title: 'Contact', icon: '' },
+                    { name: 'Contact List', title: 'Contact List', icon: '' },
+                ],
+            },
+            {
+                name: 'Contract',
+                icon: '',
+                routes: [
+                    { name: 'Contract', title: 'Contract', icon: '' },
+                    { name: 'Contract List', title: 'Contract List', icon: '' },
+                ],
+            },
+        ],
     },
-    Building: {
-        Building: {
-            'Building': {},
-            'Building List': {},
-        },
-        Entrance: {
-            'Entrance': {},
-            'Entrance List': {},
-        }
+    {
+        name: 'Building',
+        icon: '',
+        routes: [
+            {
+                name: 'Building',
+                icon: '',
+                routes: [
+                    { name: 'Building', title: 'Building', icon: '' },
+                    { name: 'Building List', title: 'Building List', icon: '' },
+                ],
+            },
+            {
+                name: 'Entrance',
+                icon: '',
+                routes: [
+                    { name: 'Entrance', title: 'Entrance', icon: '' },
+                    { name: 'Entrance List', title: 'Entrance List', icon: '' },
+                ],
+            },
+        ],
     },
-    POD: {
-        'POD': {
-            'POD': {},
-            'POD List': {},
-            'Summary': {},
-        },
-        'Distribution Network': {
-            'Distribution Network': {},
-            'System Components': {},
-            'Summary': {},
-        },
-        'Boiler': {
-            'Boiler': {},
-            'Boiler List': {},
-            'Boiler Repair List': {},
-            'Summary': {},
-        },
-        'Burner': {
-            'Burner': {},
-            'Burner List': {},
-            'Burner Repair List': {},
-            'Summary': {},
-        },
-        'District Heating Station': {
-            'District Heating Station': {},
-            'DHS List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-        'Actuator': {
-            'Actuator': {},
-            'Actuator List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-        'Pump': {
-            'Pump': {},
-            'Pump List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-        'Control Unit': {
-            'Control Unit': {},
-            'Control Unit List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-        'Distribution Block': {
-            'Distribution Block': {},
-            'Distribution Block List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-        'Exhaust System': {
-            'Exhaust System': {},
-            'Exhaust System List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-        'Expansion Tank': {
-            'Expansion Tank': {},
-            'Expansion Tank List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-        'Fittings': {
-            'Fitting': {},
-            'Fitting List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-        'Fuel Tank': {
-            'Fuel Tank': {},
-            'Fuel Tank List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-        'Heat Exchanger': {
-            'Heat Exchanger': {},
-            'Heat Exchanger List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-        'Water Storage': {
-            'Water Storage': {},
-            'Water Storage List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-        'Thermo Control': {
-            'Thermocontrol': {},
-            'Thermocontrol List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-        'Pressure Control': {
-            'Pressure Control': {},
-            'Pressure Control List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-        'Hydraulic Switch': {
-            'Hydraulic Switch': {},
-            'Hydraulic Switch List': {},
-            'Repair List': {},
-            'Summary': {},
-        },
-    }
-};
+    {
+        name: 'POD',
+        icon: '',
+        routes: [
+            {
+                name: 'POD',
+                icon: '',
+                routes: [
+                    { name: 'POD', title: 'POD', icon: '' },
+                    { name: 'POD List', title: 'POD List', icon: '' },
+                    { name: 'Summary', title: 'POD Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Distribution Network',
+                icon: '',
+                routes: [
+                    {
+                        name: 'Distribution Network',
+                        title: 'Distribution Network',
+                        icon: '',
+                    },
+                    { name: 'System Components', title: 'System Components List', icon: '' },
+                    { name: 'Summary', title: 'Distribution Network Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Boiler',
+                icon: '',
+                routes: [
+                    { name: 'Boiler', title: 'Boiler', icon: '' },
+                    { name: 'Boiler List', title: 'Boiler List', icon: '' },
+                    { name: 'Boiler Repair List', title: 'Boiler Repair List', icon: '' },
+                    { name: 'Summary', title: 'Boiler Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Burner',
+                icon: '',
+                routes: [
+                    { name: 'Burner', title: 'Burner', icon: '' },
+                    { name: 'Burner List', title: 'Burner List', icon: '' },
+                    { name: 'Burner Repair List', title: 'Burner Repair List', icon: '' },
+                    { name: 'Summary', title: 'Burner Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'District Heating Station',
+                icon: '',
+                routes: [
+                    {
+                        name: 'District Heating Station',
+                        title: 'District Heating Station (DHS)',
+                        icon: '',
+                    },
+                    { name: 'DHS List', title: 'District Heating Station List', icon: '' },
+                    { name: 'Repair List', title: 'District Heating Station Repair List', icon: '' },
+                    { name: 'Summary', title: 'District Heating Station Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Actuator',
+                icon: '',
+                routes: [
+                    { name: 'Actuator', title: 'Actuator', icon: '' },
+                    { name: 'Actuator List', title: 'Actuator List', icon: '' },
+                    { name: 'Repair List', title: 'Actuator Repair List', icon: '' },
+                    { name: 'Summary', title: 'Actuator Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Pump',
+                icon: '',
+                routes: [
+                    { name: 'Pump', title: 'Pump', icon: '' },
+                    { name: 'Pump List', title: 'Pump List', icon: '' },
+                    { name: 'Repair List', title: 'Pump Repair List', icon: '' },
+                    { name: 'Summary', title: 'Pump Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Control Unit',
+                icon: '',
+                routes: [
+                    { name: 'Control Unit', title: 'Control Unit', icon: '' },
+                    { name: 'Control Unit List', title: 'Control Unit List', icon: '' },
+                    { name: 'Repair List', title: 'Control Unit Repair List', icon: '' },
+                    { name: 'Summary', title: 'Control Unit Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Distribution Block',
+                icon: '',
+                routes: [
+                    { name: 'Distribution Block', title: 'Distribution Block', icon: '' },
+                    {
+                        name: 'Distribution Block List',
+                        title: 'Distribution Block List',
+                        icon: '',
+                    },
+                    { name: 'Repair List', title: 'Distribution Block Repair List', icon: '' },
+                    { name: 'Summary', title: 'Distribution Block Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Exhaust System',
+                icon: '',
+                routes: [
+                    { name: 'Exhaust System', title: 'Exhaust System', icon: '' },
+                    {
+                        name: 'Exhaust System List',
+                        title: 'Exhaust System List',
+                        icon: '',
+                    },
+                    { name: 'Repair List', title: 'Exhaust System Repair List', icon: '' },
+                    { name: 'Summary', title: 'Exhaust System Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Expansion Tank',
+                icon: '',
+                routes: [
+                    { name: 'Expansion Tank', title: 'Expansion Tank', icon: '' },
+                    {
+                        name: 'Expansion Tank List',
+                        title: 'Expansion Tank List',
+                        icon: '',
+                    },
+                    { name: 'Repair List', title: 'Expansion Tank Repair List', icon: '' },
+                    { name: 'Summary', title: 'Expansion Tank Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Fittings',
+                icon: '',
+                routes: [
+                    { name: 'Fitting', title: 'Fitting', icon: '' },
+                    { name: 'Fitting List', title: 'Fitting List', icon: '' },
+                    { name: 'Repair List', title: 'Fittings Repair List', icon: '' },
+                    { name: 'Summary', title: 'Fitting Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Fuel Tank',
+                icon: '',
+                routes: [
+                    { name: 'Fuel Tank', title: 'Fuel Tank', icon: '' },
+                    { name: 'Fuel Tank List', title: 'Fuel Tank List', icon: '' },
+                    { name: 'Repair List', title: 'Fuel Tank Repair List', icon: '' },
+                    { name: 'Summary', title: 'Fuel Tank Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Heat Exchanger',
+                icon: '',
+                routes: [
+                    { name: 'Heat Exchanger', title: 'Heat Exchanger', icon: '' },
+                    {
+                        name: 'Heat Exchanger List',
+                        title: 'Heat Exchanger List',
+                        icon: '',
+                    },
+                    { name: 'Repair List', title: 'Heat Exchanger Repair List', icon: '' },
+                    { name: 'Summary', title: 'Heat Exchanger Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Water Storage',
+                icon: '',
+                routes: [
+                    { name: 'Water Storage', title: 'Water Storage', icon: '' },
+                    { name: 'Water Storage List', title: 'Water Storage List', icon: '' },
+                    { name: 'Repair List', title: 'Water Storage Repair List', icon: '' },
+                    { name: 'Summary', title: 'Water Storage Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Thermo Control',
+                icon: '',
+                routes: [
+                    { name: 'Thermocontrol', title: 'Thermocontrol', icon: '' },
+                    { name: 'Thermocontrol List', title: 'Thermocontrol List', icon: '' },
+                    { name: 'Repair List', title: 'Thermocontrol Repair List', icon: '' },
+                    { name: 'Summary', title: 'Thermocontrol Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Pressure Control',
+                icon: '',
+                routes: [
+                    { name: 'Pressure Control', title: 'Pressure Control', icon: '' },
+                    {
+                        name: 'Pressure Control List',
+                        title: 'Pressure Control List',
+                        icon: '',
+                    },
+                    { name: 'Repair List', title: 'Pressure Control Repair List', icon: '' },
+                    { name: 'Summary', title: 'Pressure Control Summary', icon: '' },
+                ],
+            },
+            {
+                name: 'Hydraulic Switch',
+                icon: '',
+                routes: [
+                    { name: 'Hydraulic Switch', title: 'Hydraulic Switch', icon: '' },
+                    {
+                        name: 'Hydraulic Switch List',
+                        title: 'Hydraulic Switch List',
+                        icon: '',
+                    },
+                    { name: 'Repair List', title: 'Hydraulic Switch Repair List', icon: '' },
+                    { name: 'Summary', title: 'Hydraulic Switch Summary', icon: '' },
+                ],
+            },
+        ],
+    },
+];
+
+routes.forEach((x: any) => {
+    x.link = x.name.toLowerCase().replace(/ /g, '-');
+
+    x.routes.forEach((z: any) => {
+        z.link = z.name.toLowerCase().replace(/ /g, '-');
+
+        z.routes.forEach((c: any) => {
+            c.link = c.name.toLowerCase().replace(/ /g, '-');
+        });
+    });
+});
