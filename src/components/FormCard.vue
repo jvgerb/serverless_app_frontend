@@ -18,7 +18,7 @@ export default class FormCard extends Vue {}
   padding: 50px 70px;
   border-radius: 5px;
   background-color: white;
-
+  box-shadow: 0 0 2px #979797;
   hr {
     margin: 18px 0 0 0;
     border: none;

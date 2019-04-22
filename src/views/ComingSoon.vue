@@ -18,7 +18,7 @@ export default class ComingSoon extends Vue {
       'Not supported yet',
       'Coming soon',
       'Implementation will be done in the future',
-      'see you in the future',
+      'See you in the future',
       'Not ready yet',
       'It is not done',
       'Still not prepared',
