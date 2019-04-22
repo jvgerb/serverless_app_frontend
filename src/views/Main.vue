@@ -3,7 +3,10 @@
     <Navbar class="navbar"></Navbar>
     <Sidebar class="sidebar"></Sidebar>
     <div class="content">
-      <h1>{{currentContent.title}}</h1>
+      <h1>
+        <i v-if="currentContent.title" class="icon-no-icon"></i>
+        {{currentContent.title}}
+      </h1>
       <div class="view-container">
         <component :is="currentContent.viewName"></component>
       </div>
@@ -81,6 +84,9 @@ export default class Main extends Vue {
     height: 75px;
     line-height: 75px;
     box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.08);
+    i {
+      font-size: 30px;
+    }
   }
 
   .view-container {

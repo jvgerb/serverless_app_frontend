@@ -56,9 +56,11 @@ export default class FormCard extends Vue {}
       border-radius: 4px;
       padding: 8px 10px;
       box-sizing: border-box;
-      &::placeholder {
-        color: #a6a8ab;
-      }
+    }
+    select,
+    input::placeholder,
+    textarea::placeholder {
+      color: #a6a8ab;
     }
   }
 }

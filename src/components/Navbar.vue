@@ -63,6 +63,7 @@ nav {
   top: 0;
   height: var(--nav-height);
   background: var(--nav-bg-gradient);
+  z-index: 1;
 }
 
 .account-side {

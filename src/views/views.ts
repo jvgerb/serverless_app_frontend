@@ -1,11 +1,13 @@
 import ComingSoon from './ComingSoon.vue';
-import Customer from './Customer/Customer.vue';
-import ContactPerson from './Customer/ContactPerson.vue';
+import Contact from './Customer/Contact.vue';
+import Representative from './Customer/Representative.vue';
+import Contract from './Customer/Contract.vue';
 
 export const views = {
     ComingSoon,
-    Customer,
-    ContactPerson,
+    Contact,
+    Representative,
+    Contract,
 };
 
 export let routes: any[] = [

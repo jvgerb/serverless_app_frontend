@@ -24,7 +24,7 @@ import { Component, Vue } from 'vue-property-decorator';
   components: {},
 })
 export default class Rating extends Vue {
-  value = 3;
+  value = 0;
 }
 </script>
 
