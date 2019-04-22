@@ -34,9 +34,9 @@ export default class Navbar extends Vue {
   searchVisible = false;
 
   get tabRoutes() {
-    const menuRoute = routes.find(
-      (x: any) => this.$route.params.menu.toLowerCase() == x.link
-    );
+    const menuRoute =
+      this.$route.params.menu &&
+      routes.find((x: any) => this.$route.params.menu.toLowerCase() == x.link);
 
     const submenuRoute =
       menuRoute &&
