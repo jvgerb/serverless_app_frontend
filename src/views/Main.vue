@@ -23,8 +23,8 @@ import { views } from './views';
 export default class Main extends Vue {
   get currentContent() {
     return {
-      name: 'Contact',
-      viewName: 'Contact',
+      name: 'Contact Person',
+      viewName: 'ContactPerson',
     };
   }
 }

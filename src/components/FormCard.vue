@@ -24,10 +24,13 @@ export default class FormCard extends Vue {}
     border: none;
     border-top: solid 2px #cdcdcd;
   }
+  .form-row:first-child .form-field {
+    margin-top: 0;
+  }
   .form-field {
     display: inline-block;
     box-sizing: border-box;
-    margin-top: 18px;
+    margin-top: 15px;
     padding-left: 24px;
     font-size: 12px;
     width: 33.333333333333336%;

@@ -31,17 +31,17 @@
     <div class="form-row">
       <div class="form-field">
         <label>First Name</label>
-        <input type="text">
+        <input type="text" placeholder="Albrecht">
       </div>
 
       <div class="form-field">
         <label>Middle Name</label>
-        <input type="text">
+        <input type="text" placeholder="Von Roden">
       </div>
 
       <div class="form-field">
         <label>Surname</label>
-        <input type="text">
+        <input type="text" placeholder="HV">
       </div>
     </div>
 
@@ -73,7 +73,7 @@
     <div class="form-row">
       <div class="form-field">
         <label>Birthday</label>
-        <DatePicker></DatePicker>
+        <DatePicker placeholder="01.10.2005"></DatePicker>
       </div>
       <div class="form-field">
         <label>Religion</label>
@@ -114,10 +114,9 @@
 
     <div class="form-row">
       <div class="form-field col-2">
-        <label>Marital Status</label>
+        <label>Comment</label>
         <textarea></textarea>
       </div>
-      <hr>
     </div>
   </FormCard>
 </template>
