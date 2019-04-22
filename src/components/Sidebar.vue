@@ -75,6 +75,8 @@ nav {
   grid-template-rows: auto;
   grid-template-areas: 'menu submenu';
   height: 100vh;
+  position: sticky;
+  top: 0;
 }
 
 .menu {
