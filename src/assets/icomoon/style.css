@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'icomoon';
   src:
-    url('fonts/icomoon.ttf?3p7jhc') format('truetype'),
-    url('fonts/icomoon.woff?3p7jhc') format('woff'),
-    url('fonts/icomoon.svg?3p7jhc#icomoon') format('svg');
+    url('fonts/icomoon.ttf?jtwgwn') format('truetype'),
+    url('fonts/icomoon.woff?jtwgwn') format('woff'),
+    url('fonts/icomoon.svg?jtwgwn#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,6 +23,189 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-building-line:before {
+  content: "\e905";
+}
+.icon-one-customer:before {
+  content: "\e93d";
+}
+.icon-actuator:before {
+  content: "\e901";
+}
+.icon-alerts:before {
+  content: "\e902";
+}
+.icon-billing-address:before {
+  content: "\e903";
+}
+.icon-boiler:before {
+  content: "\e904";
+}
+.icon-burner:before {
+  content: "\e906";
+}
+.icon-calendar:before {
+  content: "\e907";
+}
+.icon-checkmark:before {
+  content: "\e908";
+}
+.icon-close:before {
+  content: "\e909";
+}
+.icon-contact:before {
+  content: "\e90a";
+}
+.icon-contact-person:before {
+  content: "\e90b";
+}
+.icon-contacts-list:before {
+  content: "\e90c";
+}
+.icon-contract:before {
+  content: "\e90d";
+}
+.icon-contract-list:before {
+  content: "\e90e";
+}
+.icon-control-unit:before {
+  content: "\e90f";
+}
+.icon-customer:before {
+  content: "\e910";
+}
+.icon-dashboard:before {
+  content: "\e911";
+}
+.icon-delete:before {
+  content: "\e912";
+}
+.icon-delivery-address:before {
+  content: "\e913";
+}
+.icon-distribution-block:before {
+  content: "\e914";
+}
+.icon-distribution-ntwk:before {
+  content: "\e915";
+}
+.icon-fireplace:before {
+  content: "\e916";
+}
+.icon-downwards-pointer:before {
+  content: "\e917";
+}
+.icon-edit:before {
+  content: "\e918";
+}
+.icon-email:before {
+  content: "\e919";
+}
+.icon-entrance:before {
+  content: "\e91a";
+}
+.icon-exhaust:before {
+  content: "\e91b";
+}
+.icon-expansion-tank:before {
+  content: "\e91c";
+}
+.icon-fittings:before {
+  content: "\e91d";
+}
+.icon-fuel-tank:before {
+  content: "\e91e";
+}
+.icon-hamburger:before {
+  content: "\e91f";
+}
+.icon-heat-exchanger:before {
+  content: "\e920";
+}
+.icon-heating-station:before {
+  content: "\e921";
+}
+.icon-building:before {
+  content: "\e922";
+}
+.icon-hydraulic-switch:before {
+  content: "\e923";
+}
+.icon-list:before {
+  content: "\e924";
+}
+.icon-location:before {
+  content: "\e925";
+}
+.icon-maintenance:before {
+  content: "\e926";
+}
+.icon-messages:before {
+  content: "\e927";
+}
+.icon-metering:before {
+  content: "\e928";
+}
+.icon-next:before {
+  content: "\e929";
+}
+.icon-perfomance:before {
+  content: "\e92a";
+}
+.icon-phone:before {
+  content: "\e92b";
+}
+.icon-place:before {
+  content: "\e92c";
+}
+.icon-pod:before {
+  content: "\e92d";
+}
+.icon-pressure-control:before {
+  content: "\e92e";
+}
+.icon-previous:before {
+  content: "\e92f";
+}
+.icon-profile:before {
+  content: "\e930";
+}
+.icon-pump:before {
+  content: "\e931";
+}
+.icon-quiz:before {
+  content: "\e932";
+}
+.icon-representative:before {
+  content: "\e933";
+}
+.icon-representatives-list:before {
+  content: "\e934";
+}
+.icon-search:before {
+  content: "\e935";
+}
+.icon-settings:before {
+  content: "\e936";
+}
+.icon-star:before {
+  content: "\e937";
+}
+.icon-summary:before {
+  content: "\e938";
+}
+.icon-supplier:before {
+  content: "\e939";
+}
+.icon-thermo-control:before {
+  content: "\e93a";
+}
+.icon-view-more:before {
+  content: "\e93b";
+}
+.icon-water-storage:before {
+  content: "\e93c";
+}
 .icon-no-icon:before {
   content: "\e900";
 }

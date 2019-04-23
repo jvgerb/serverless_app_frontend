@@ -3,20 +3,20 @@
     <div class="menu">
       <div class="top-menu">
         <a href="#">
-          <i class="icon-no-icon"></i>
+          <i class="icon-hamburger"></i>
         </a>
       </div>
       <div class="middle-menu">
         <router-link v-for="route in menuRoutes" :key="route.name" :to="'/'+route.link">
-          <i class="icon-no-icon"></i>
+          <i :class="[`icon-${route.icon || 'no-icon'}`]"></i>
         </router-link>
       </div>
       <div class="bottom-menu">
         <a href="#">
-          <i class="icon-no-icon"></i>
+          <i class="icon-settings"></i>
         </a>
         <a href="#">
-          <i class="icon-no-icon"></i>
+          <i class="icon-quiz"></i>
         </a>
       </div>
     </div>
@@ -29,7 +29,7 @@
           :key="route.name"
           :to="'/'+$route.params.menu +'/'+route.link"
         >
-          <i class="icon-no-icon"></i>
+          <i :class="[`icon-${route.icon || 'no-icon'}`]"></i>
           {{route.name}}
         </router-link>
       </div>
@@ -90,6 +90,9 @@ nav {
   grid-template-areas:
     'top-submenu'
     'bottom-submenu';
+  i {
+    font-size: 18px;
+  }
 }
 
 .top-menu {
@@ -100,20 +103,28 @@ nav {
   justify-content: center;
   box-shadow: 0px 1px 0px #d9d9d9;
   z-index: 1;
-
+  i {
+    font-size: 20px;
+  }
   a {
     text-decoration: none;
-    color: #cdc0b8;
+    color: black;
     background-color: white;
   }
 }
 
 .middle-menu {
   grid-area: middle-menu;
+  i {
+    font-size: 28px;
+  }
 }
 
 .bottom-menu {
   grid-area: bottom-menu;
+  i {
+    font-size: 20px;
+  }
 }
 
 .middle-menu,
@@ -169,7 +180,6 @@ nav {
     align-items: center;
     height: 45px;
     margin: 2px 14px;
-    padding: 0 20px;
     text-decoration: none;
     color: #4d4d4d;
     background: var(--second-bg-color);
@@ -184,7 +194,8 @@ nav {
       background-color: var(--accent-hover-color);
     }
     i {
-      margin-right: 24px;
+      width: 64px;
+      text-align: center;
       color: #cdc0b8;
     }
   }

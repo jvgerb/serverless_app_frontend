@@ -15,11 +15,11 @@ export const views = {
 export let routes: any[] = [
     {
         name: 'Customer',
-        icon: '',
+        icon: 'customer ',
         routes: [
             {
                 name: 'Customer',
-                icon: '',
+                icon: 'one-customer',
                 routes: [
                     { name: 'Customer', title: 'Customer', icon: '' },
                     { name: 'Customer List', title: 'Customer List', icon: '' },
@@ -32,7 +32,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Contact Person',
-                icon: '',
+                icon: 'contact-person',
                 routes: [
                     { name: 'Contact', title: 'Contact Person', icon: '' },
                     { name: 'Contact List', title: 'Contact List', icon: '' },
@@ -40,7 +40,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Representative',
-                icon: '',
+                icon: 'representative',
                 routes: [
                     { name: 'Representative', title: 'Representative', icon: '' },
                     {
@@ -52,7 +52,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Contract',
-                icon: '',
+                icon: 'contract',
                 routes: [
                     { name: 'Contract', title: 'Contract', icon: '' },
                     { name: 'Contract List', title: 'Contract List', icon: '' },
@@ -62,11 +62,11 @@ export let routes: any[] = [
     },
     {
         name: 'Supplier',
-        icon: '',
+        icon: 'supplier',
         routes: [
             {
                 name: 'Supplier',
-                icon: '',
+                icon: 'one-customer',
                 routes: [
                     { name: 'Supplier', title: 'Supplier', icon: '' },
                     { name: 'Supplier List', title: 'Supplier List', icon: '' },
@@ -74,7 +74,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Contact Person',
-                icon: '',
+                icon: 'contact-person',
                 routes: [
                     { name: 'Contact', title: 'Contact', icon: '' },
                     { name: 'Contact List', title: 'Contact List', icon: '' },
@@ -82,7 +82,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Contract',
-                icon: '',
+                icon: 'contract',
                 routes: [
                     { name: 'Contract', title: 'Contract', icon: '' },
                     { name: 'Contract List', title: 'Contract List', icon: '' },
@@ -92,11 +92,11 @@ export let routes: any[] = [
     },
     {
         name: 'Building',
-        icon: '',
+        icon: 'building',
         routes: [
             {
                 name: 'Building',
-                icon: '',
+                icon: 'building-line',
                 routes: [
                     { name: 'Building', title: 'Building', icon: '' },
                     { name: 'Building List', title: 'Building List', icon: '' },
@@ -104,7 +104,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Entrance',
-                icon: '',
+                icon: 'entrance',
                 routes: [
                     { name: 'Entrance', title: 'Entrance', icon: '' },
                     { name: 'Entrance List', title: 'Entrance List', icon: '' },
@@ -114,11 +114,11 @@ export let routes: any[] = [
     },
     {
         name: 'POD',
-        icon: '',
+        icon: 'fireplace',
         routes: [
             {
                 name: 'POD',
-                icon: '',
+                icon: 'pod',
                 routes: [
                     { name: 'POD', title: 'POD', icon: '' },
                     { name: 'POD List', title: 'POD List', icon: '' },
@@ -127,7 +127,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Distribution Network',
-                icon: '',
+                icon: 'distribution-ntwk',
                 routes: [
                     {
                         name: 'Distribution Network',
@@ -140,7 +140,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Boiler',
-                icon: '',
+                icon: 'boiler',
                 routes: [
                     { name: 'Boiler', title: 'Boiler', icon: '' },
                     { name: 'Boiler List', title: 'Boiler List', icon: '' },
@@ -150,7 +150,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Burner',
-                icon: '',
+                icon: 'burner',
                 routes: [
                     { name: 'Burner', title: 'Burner', icon: '' },
                     { name: 'Burner List', title: 'Burner List', icon: '' },
@@ -160,7 +160,7 @@ export let routes: any[] = [
             },
             {
                 name: 'District Heating Station',
-                icon: '',
+                icon: 'heating-station',
                 routes: [
                     {
                         name: 'District Heating Station',
@@ -174,7 +174,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Actuator',
-                icon: '',
+                icon: 'actuator',
                 routes: [
                     { name: 'Actuator', title: 'Actuator', icon: '' },
                     { name: 'Actuator List', title: 'Actuator List', icon: '' },
@@ -184,7 +184,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Pump',
-                icon: '',
+                icon: 'pump',
                 routes: [
                     { name: 'Pump', title: 'Pump', icon: '' },
                     { name: 'Pump List', title: 'Pump List', icon: '' },
@@ -194,7 +194,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Control Unit',
-                icon: '',
+                icon: 'control-unit',
                 routes: [
                     { name: 'Control Unit', title: 'Control Unit', icon: '' },
                     { name: 'Control Unit List', title: 'Control Unit List', icon: '' },
@@ -204,7 +204,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Distribution Block',
-                icon: '',
+                icon: 'distribution-block',
                 routes: [
                     { name: 'Distribution Block', title: 'Distribution Block', icon: '' },
                     {
@@ -218,7 +218,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Exhaust System',
-                icon: '',
+                icon: 'boiler',
                 routes: [
                     { name: 'Exhaust System', title: 'Exhaust System', icon: '' },
                     {
@@ -232,7 +232,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Expansion Tank',
-                icon: '',
+                icon: 'expansion-tank',
                 routes: [
                     { name: 'Expansion Tank', title: 'Expansion Tank', icon: '' },
                     {
@@ -246,7 +246,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Fittings',
-                icon: '',
+                icon: 'fittings',
                 routes: [
                     { name: 'Fitting', title: 'Fitting', icon: '' },
                     { name: 'Fitting List', title: 'Fitting List', icon: '' },
@@ -256,7 +256,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Fuel Tank',
-                icon: '',
+                icon: 'fuel-tank',
                 routes: [
                     { name: 'Fuel Tank', title: 'Fuel Tank', icon: '' },
                     { name: 'Fuel Tank List', title: 'Fuel Tank List', icon: '' },
@@ -266,7 +266,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Heat Exchanger',
-                icon: '',
+                icon: 'heat-exchanger',
                 routes: [
                     { name: 'Heat Exchanger', title: 'Heat Exchanger', icon: '' },
                     {
@@ -280,7 +280,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Water Storage',
-                icon: '',
+                icon: 'water-storage',
                 routes: [
                     { name: 'Water Storage', title: 'Water Storage', icon: '' },
                     { name: 'Water Storage List', title: 'Water Storage List', icon: '' },
@@ -290,7 +290,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Thermo Control',
-                icon: '',
+                icon: 'thermo-control',
                 routes: [
                     { name: 'Thermocontrol', title: 'Thermocontrol', icon: '' },
                     { name: 'Thermocontrol List', title: 'Thermocontrol List', icon: '' },
@@ -300,7 +300,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Pressure Control',
-                icon: '',
+                icon: 'pressure-control',
                 routes: [
                     { name: 'Pressure Control', title: 'Pressure Control', icon: '' },
                     {
@@ -314,7 +314,7 @@ export let routes: any[] = [
             },
             {
                 name: 'Hydraulic Switch',
-                icon: '',
+                icon: 'hydraulic-switch',
                 routes: [
                     { name: 'Hydraulic Switch', title: 'Hydraulic Switch', icon: '' },
                     {
