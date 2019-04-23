@@ -21,7 +21,9 @@
       </div>
     </div>
     <div class="submenu">
-      <div class="top-submenu"></div>
+      <div class="top-submenu">
+        <img src="../assets/img/logo.svg" alt>
+      </div>
       <div class="bottom-submenu">
         <h2>{{$route.params.menu}}</h2>
         <router-link
@@ -158,6 +160,9 @@ nav {
 
 .top-submenu {
   grid-area: top-submenu;
+  display: grid;
+  justify-content: center;
+  align-items: center;
   box-shadow: 0px 1px 0px #d9d9d9;
 }
 
