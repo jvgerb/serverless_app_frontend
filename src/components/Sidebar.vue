@@ -22,10 +22,12 @@
     </div>
     <div class="submenu">
       <div class="top-submenu">
-        <img src="../assets/img/logo.svg" alt>
+        <router-link to="/">
+          <img src="../assets/img/logo.svg" alt>
+        </router-link>
       </div>
       <div class="bottom-submenu">
-        <h2>{{$route.params.menu}}</h2>
+        <h2>{{currentRoute.name}}</h2>
         <router-link
           v-for="route in submenuRoutes"
           :key="route.name"
@@ -42,11 +44,16 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { routes } from '../views/views-routes';
+import router from '../router';
 
 @Component({
   components: {},
 })
 export default class Sidebar extends Vue {
+  get currentRoute() {
+    return routes.find(x => this.$route.params.menu.toLowerCase() == x.link);
+  }
+
   get menuRoutes() {
     return routes;
   }
@@ -176,7 +183,6 @@ nav {
   h2 {
     margin: 32px 0;
     text-align: center;
-    text-transform: uppercase;
   }
   a {
     display: grid;

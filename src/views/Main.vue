@@ -87,6 +87,7 @@ export default class Main extends Vue {
     box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.08);
     i {
       font-size: 25px;
+      margin-right: 6px;
     }
   }
 

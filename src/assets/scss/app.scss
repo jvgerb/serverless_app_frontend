@@ -1,9 +1,9 @@
 @import "vars";
-@import url("~vuetify/dist/vuetify.min.css");
+@import "~vuetify/dist/vuetify.min.css";
 @import "vuetify-theme";
 @import "normalize";
-// @import "assets/fonts/antonio";
-@import url("assets/icomoon/style.css");
+@import "assets/fonts/antonio";
+@import "assets/icomoon/style.css";
 @import "inputs";
 
 [class^="icon-"],
@@ -24,6 +24,7 @@ h1,
 h2,
 h3 {
   font-family: "Antonio Light";
+  font-weight: 200;
 }
 
 h1 {
