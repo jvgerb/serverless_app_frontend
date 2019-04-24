@@ -3,31 +3,27 @@
     <template v-slot:filter-template>
       <div class="form-field">
         <select>
-          <option value="Heat">Phone</option>
+          <option value="Heat">Place</option>
         </select>
-        <i class="icon-phone"></i>
+        <i class="icon-place"></i>
         <div class="arrow-divider"></div>
       </div>
 
       <div class="form-field">
         <select>
-          <option value="Heat">Function</option>
+          <option value="Heat">Type</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
     </template>
     <template v-slot:table-template="slotScope">
       <td
-        v-for="(item, index) in headers.slice(0, -3)"
+        v-for="(item, index) in headers.slice(0, -2)"
         :key="index"
       >{{ slotScope.props.item[item.value] }}</td>
       <td>
-        <i class="icon-email"></i>
-        {{ slotScope.props.item['email'] }}
-      </td>
-      <td>
-        <i class="icon-phone"></i>
-        {{ slotScope.props.item['phone'] }}
+        <i class="icon-place"></i>
+        {{ slotScope.props.item['place'] }}
       </td>
       <td class="actions">
         <v-tooltip top>
@@ -65,26 +61,33 @@ import Rating from '@/components/Rating.vue';
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
-export default class ContactList extends Vue {
+export default class RepresentativeList extends Vue {
   headers = [
     { text: '#', value: 'number' },
-    { text: 'First Name', value: 'firstName' },
-    { text: 'Middle Name', value: 'middleName' },
-    { text: 'Surname', value: 'surname' },
-    { text: 'Email', value: 'email' },
-    { text: 'Phone', value: 'phone' },
+    { text: 'Organization Name', value: 'organizationName' },
+    { text: 'Appointed', value: 'appointed' },
+    { text: 'Type', value: 'type' },
+    { text: 'Street', value: 'street' },
+    { text: 'Street Number', value: 'streetNumber' },
+    { text: 'Zip Code', value: 'zipCode' },
+    { text: 'Place', value: 'place' },
     { text: 'Action', value: 'action', sortable: false },
   ];
   items = [...Array(100)].map((x, i) => ({
     number: i + 1,
-    firstName: 'John',
-    middleName: 'Doe',
-    surname: 'Baer',
-    email: 'John.doe@email.com',
-    phone: '0123 657 883',
+    organizationName: 'Energicos GmBH',
+    appointed: 'Yes',
+    type: 'Lorem',
+    street: 'Genslerstraße 84',
+    streetNumber: 'Platz 18',
+    zipCode: '13359',
+    place: 'Ostbevern',
   }));
 }
 </script>
 
 <style lang="scss" scoped>
+td:nth-child(2) {
+  color: var(--accent-color);
+}
 </style>

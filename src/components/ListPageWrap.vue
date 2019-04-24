@@ -74,6 +74,11 @@ export default class ListPageWrap extends Vue {
 
   .form-field {
     width: 200px;
+    &:first-child {
+      select ~ i {
+        left: 12px;
+      }
+    }
     select {
       height: 45px;
       border-radius: 9px;
@@ -87,7 +92,7 @@ export default class ListPageWrap extends Vue {
     }
     select ~ i {
       position: absolute;
-      left: 15px;
+      left: 36px;
       top: calc(50% - 8px);
       color: var(--icon-color);
       font-size: 16px;
@@ -103,7 +108,7 @@ export default class ListPageWrap extends Vue {
   }
 }
 
-::v-deep table.theme--light.v-table {
+table.theme--light.v-table {
   thead {
     tr {
       height: 44px;
@@ -122,24 +127,19 @@ export default class ListPageWrap extends Vue {
     td {
       font-size: 12px;
       height: 34px;
+      white-space: nowrap;
+      i {
+        font-size: 16px;
+        margin-right: 10px;
+        color: var(--icon-color);
+        cursor: pointer;
+        &:hover {
+          color: var(--accent-color);
+        }
+      }
     }
     tr {
       border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    }
-  }
-}
-
-table {
-  .actions {
-    white-space: nowrap;
-    i {
-      font-size: 16px;
-      margin-right: 10px;
-      color: var(--icon-color);
-      cursor: pointer;
-      &:hover {
-        color: var(--accent-color);
-      }
     }
   }
 }
