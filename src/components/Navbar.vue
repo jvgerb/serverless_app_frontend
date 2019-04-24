@@ -10,14 +10,14 @@
     <ul class="account-side">
       <li>
         <input ref="searchInput" v-show="searchVisible" class="search-input" type="text">
-        <i @click="toggleSearchInput()" class="icon-no-icon"></i>
+        <i @click="toggleSearchInput()" class="icon-search"></i>
       </li>
       <li>
         <img src="@/assets/img/account.png" alt="Account">
         <span class="badge">9+</span>
       </li>
       <li>
-        <i class="icon-no-icon"></i>
+        <i class="icon-logout"></i>
       </li>
     </ul>
   </nav>
@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { routes } from '../views/views';
+import { routes } from '../views/views-routes';
 
 @Component({
   components: {},
@@ -89,7 +89,7 @@ nav {
     width: 28px;
     height: 28px;
     text-align: center;
-    line-height: 1.7;
+    line-height: 2;
     position: absolute;
     top: -10px;
     right: -20px;
@@ -101,6 +101,8 @@ nav {
     right: 40px;
     height: 26px;
     width: 200px;
+    background-color: white;
+    color: black;
   }
 }
 .tabs-side {

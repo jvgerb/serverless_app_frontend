@@ -41,7 +41,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { routes } from '../views/views';
+import { routes } from '../views/views-routes';
 
 @Component({
   components: {},
@@ -136,7 +136,7 @@ nav {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: #cdc0b8;
+    color: var(--icon-color);
     background-color: white;
     height: 100%;
     border-left: solid 2px transparent;
@@ -201,7 +201,7 @@ nav {
     i {
       width: 64px;
       text-align: center;
-      color: #cdc0b8;
+      color: var(--icon-color);
     }
   }
 }

@@ -1,13 +1,17 @@
 import ComingSoon from './ComingSoon.vue';
 import Customer from './Customer/Customer.vue';
+import CustomerList from './Customer/CustomerList.vue';
 import Contact from './Customer/Contact.vue';
+import ContactList from './Customer/ContactList.vue';
 import Representative from './Customer/Representative.vue';
 import Contract from './Customer/Contract.vue';
 
 export const views = {
     ComingSoon,
     Customer,
+    CustomerList,
     Contact,
+    ContactList,
     Representative,
     Contract,
 };
@@ -21,12 +25,12 @@ export let routes: any[] = [
                 name: 'Customer',
                 icon: 'one-customer',
                 routes: [
-                    { name: 'Customer', title: 'Customer', icon: '' },
-                    { name: 'Customer List', title: 'Customer List', icon: '' },
+                    { name: 'Customer', title: 'Customer', icon: 'customer' },
+                    { name: 'Customer List', title: 'Customer List', icon: 'list' },
                     {
                         name: 'Customer Perfomance',
                         title: 'Customer Perfomance',
-                        icon: '',
+                        icon: 'perfomance',
                     },
                 ],
             },
@@ -34,19 +38,19 @@ export let routes: any[] = [
                 name: 'Contact Person',
                 icon: 'contact-person',
                 routes: [
-                    { name: 'Contact', title: 'Contact Person', icon: '' },
-                    { name: 'Contact List', title: 'Contact List', icon: '' },
+                    { name: 'Contact', title: 'Contact Person', icon: 'contact' },
+                    { name: 'Contact List', title: 'Contact List', icon: 'contacts-list' },
                 ],
             },
             {
                 name: 'Representative',
                 icon: 'representative',
                 routes: [
-                    { name: 'Representative', title: 'Representative', icon: '' },
+                    { name: 'Representative', title: 'Representative', icon: 'contact' },
                     {
                         name: 'Representative List',
                         title: 'Representative List',
-                        icon: '',
+                        icon: 'representatives-list',
                     },
                 ],
             },
@@ -54,8 +58,8 @@ export let routes: any[] = [
                 name: 'Contract',
                 icon: 'contract',
                 routes: [
-                    { name: 'Contract', title: 'Contract', icon: '' },
-                    { name: 'Contract List', title: 'Contract List', icon: '' },
+                    { name: 'Contract', title: 'Contract', icon: 'contract' },
+                    { name: 'Contract List', title: 'Contract List', icon: 'contract-list' },
                 ],
             },
         ],

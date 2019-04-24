@@ -4,7 +4,7 @@
     <Sidebar class="sidebar"></Sidebar>
     <div class="content">
       <h1>
-        <i v-if="currentContent.title" class="icon-no-icon"></i>
+        <i v-if="currentContent.icon" :class="[`icon-${currentContent.icon || 'no-icon'}`]"></i>
         {{currentContent.title}}
       </h1>
       <div class="view-container">
@@ -18,7 +18,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Navbar from '@/components/Navbar.vue';
 import Sidebar from '@/components/Sidebar.vue';
-import { views, routes } from './views';
+import { views, routes } from './views-routes';
 
 @Component({
   components: { Navbar, Sidebar, ...views },
@@ -53,6 +53,7 @@ export default class Main extends Vue {
         Object.keys(views).includes(currentViewName) && tabRoute
           ? currentViewName
           : 'ComingSoon',
+      icon: currentRoute.icon,
     };
   }
 }
@@ -85,7 +86,7 @@ export default class Main extends Vue {
     line-height: 75px;
     box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.08);
     i {
-      font-size: 30px;
+      font-size: 25px;
     }
   }
 

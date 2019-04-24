@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'icomoon';
   src:
-    url('fonts/icomoon.ttf?jtwgwn') format('truetype'),
-    url('fonts/icomoon.woff?jtwgwn') format('woff'),
-    url('fonts/icomoon.svg?jtwgwn#icomoon') format('svg');
+    url('fonts/icomoon.ttf?u3452k') format('truetype'),
+    url('fonts/icomoon.woff?u3452k') format('woff'),
+    url('fonts/icomoon.svg?u3452k#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,6 +23,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-logout:before {
+  content: "\e93e";
+}
 .icon-building-line:before {
   content: "\e905";
 }

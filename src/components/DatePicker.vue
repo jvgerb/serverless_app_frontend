@@ -1,7 +1,7 @@
 <template>
   <div class="date-picker">
     <input type="text">
-    <i class="icon-no-icon"></i>
+    <i class="icon-calendar"></i>
   </div>
 </template>
 
@@ -27,7 +27,8 @@ export default class DatePicker extends Vue {}
     position: absolute;
     font-size: 16px;
     top: calc(50% - 8px);
-    right: -8px;
+    right: 12px;
+    color: var(--icon-color);
   }
 }
 </style>

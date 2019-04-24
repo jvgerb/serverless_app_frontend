@@ -40,6 +40,7 @@ export default class Rating extends Vue {
     height: 100%;
     margin-left: 8px;
     stroke: var(--accent-color);
+    stroke-width: 2px;
     fill: white;
     cursor: pointer;
     &:first-child {
