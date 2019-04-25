@@ -44,8 +44,8 @@ export default class Main extends Vue {
       );
 
     const currentRoute = tabRoute || {};
-
-    const currentViewName = tabRoute && tabRoute.name.replace(/ /g, '');
+    const currentViewName =
+      tabRoute && (tabRoute.component || tabRoute.name.replace(/ /g, ''));
 
     return {
       title: currentRoute.title,
