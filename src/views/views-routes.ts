@@ -1,4 +1,5 @@
 import ComingSoon from './ComingSoon.vue';
+/* CUSTOMER */
 import Customer from './Customer/Customer.vue';
 import CustomerList from './Customer/CustomerList.vue';
 import Contact from './Customer/Contact.vue';
@@ -8,8 +9,12 @@ import RepresentativeList from './Customer/RepresentativeList.vue';
 import Contract from './Customer/Contract.vue';
 import ContractList from './Customer/ContractList.vue';
 
+/* SUPPLIER */
+import Supplier from './Supplier/Supplier.vue';
+
 export const views = {
     ComingSoon,
+    /* CUSTOMER */
     Customer,
     CustomerList,
     Contact,
@@ -18,6 +23,8 @@ export const views = {
     RepresentativeList,
     Contract,
     ContractList,
+    /* SUPPLIER */
+    Supplier,
 };
 
 export let routes: any[] = [

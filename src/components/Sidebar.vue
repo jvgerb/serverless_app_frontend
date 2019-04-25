@@ -51,7 +51,11 @@ import router from '../router';
 })
 export default class Sidebar extends Vue {
   get currentRoute() {
-    return routes.find(x => this.$route.params.menu.toLowerCase() == x.link);
+    return (
+      (this.$route.params.menu &&
+        routes.find(x => this.$route.params.menu.toLowerCase() == x.link)) ||
+      {}
+    );
   }
 
   get menuRoutes() {
