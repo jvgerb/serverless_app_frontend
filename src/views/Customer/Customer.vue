@@ -4,7 +4,7 @@
       <h5>Customer ID</h5>
 
       <div class="form-field col-3">
-        <label>Contact Person Religion</label>
+        <label>Customer ID</label>
         <input type="text" placeholder="19">
       </div>
 

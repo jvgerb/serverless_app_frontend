@@ -73,4 +73,7 @@ export default class CustomerList extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.actions i {
+  color: var(--icon-color) !important;
+}
 </style>

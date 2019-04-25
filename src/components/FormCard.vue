@@ -48,6 +48,8 @@ export default class FormCard extends Vue {}
       width: 100%;
       display: inline-block;
       margin-bottom: 7px;
+      letter-spacing: 1.25px;
+      font-weight: 500;
     }
     input,
     select,
