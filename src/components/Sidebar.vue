@@ -200,6 +200,7 @@ nav {
     background: var(--second-bg-color);
     font-size: 13px;
     border-radius: 3px;
+    transition: all 0.4s;
     &.router-link-active,
     &.router-link-active i {
       background: var(--accent-color);

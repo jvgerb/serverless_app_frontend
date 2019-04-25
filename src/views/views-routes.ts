@@ -2,15 +2,17 @@ import ComingSoon from './ComingSoon.vue';
 /* CUSTOMER */
 import Customer from './Customer/Customer.vue';
 import CustomerList from './Customer/CustomerList.vue';
-import Contact from './Customer/Contact.vue';
+// import Contact from './Customer/Contact.vue';
 import ContactList from './Customer/ContactList.vue';
 import Representative from './Customer/Representative.vue';
 import RepresentativeList from './Customer/RepresentativeList.vue';
-import Contract from './Customer/Contract.vue';
+// import Contract from './Customer/Contract.vue';
 import ContractList from './Customer/ContractList.vue';
 
 /* SUPPLIER */
 import Supplier from './Supplier/Supplier.vue';
+import Contact from './Supplier/Contact.vue';
+import Contract from './Supplier/Contract.vue';
 
 export const views = {
     ComingSoon,

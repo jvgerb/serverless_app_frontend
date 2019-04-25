@@ -1,17 +1,19 @@
 <template>
   <div class="date-picker">
-    <input type="text">
+    <input type="text" :placeholder="placeholder">
     <i class="icon-calendar"></i>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
   components: {},
 })
-export default class DatePicker extends Vue {}
+export default class DatePicker extends Vue {
+  @Prop() placeholder!: string;
+}
 </script>
 
 <style lang="scss" scoped>
