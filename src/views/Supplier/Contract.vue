@@ -87,9 +87,9 @@
     </div>
 
     <div class="form-row">
-      <div class="form-field">
+      <div class="form-field col-2">
         <label>Contract Term Comment</label>
-        <input type="text" placeholder="60">
+        <textarea></textarea>
       </div>
     </div>
   </FormCard>
