@@ -17,6 +17,10 @@ import SupplierContactList from './Supplier/ContactList.vue';
 import SupplierContract from './Supplier/Contract.vue';
 import SupplierContractList from './Supplier/ContractList.vue';
 
+/* BUILDING */
+import Building from './Building/Building.vue';
+
+
 export const views = {
     ComingSoon,
     /* CUSTOMER */
@@ -34,7 +38,9 @@ export const views = {
     SupplierContact,
     SupplierContactList,
     SupplierContract,
-    SupplierContractList
+    SupplierContractList,
+    /* BUILDING */
+    Building
 };
 
 export let routes: any[] = [
@@ -93,24 +99,24 @@ export let routes: any[] = [
                 name: 'Supplier',
                 icon: 'one-customer',
                 routes: [
-                    { name: 'Supplier', title: 'Supplier', icon: '' },
-                    { name: 'Supplier List', title: 'Supplier List', icon: '' },
+                    { name: 'Supplier', title: 'Supplier', icon: 'supplier' },
+                    { name: 'Supplier List', title: 'Supplier List', icon: 'list' },
                 ],
             },
             {
                 name: 'Contact Person',
                 icon: 'contact-person',
                 routes: [
-                    { name: 'Contact', component: 'SupplierContact', title: 'Contact Person', icon: '' },
-                    { name: 'Contact List', component: 'SupplierContactList', title: 'Contact List', icon: '' },
+                    { name: 'Contact', component: 'SupplierContact', title: 'Contact Person', icon: 'contact' },
+                    { name: 'Contact List', component: 'SupplierContactList', title: 'Contact List', icon: 'contacts-list' },
                 ],
             },
             {
                 name: 'Contract',
                 icon: 'contract',
                 routes: [
-                    { name: 'Contract', component: 'SupplierContract', title: 'Contract', icon: '' },
-                    { name: 'Contract List', component: 'SupplierContractList', title: 'Contract List', icon: '' },
+                    { name: 'Contract', component: 'SupplierContract', title: 'Contract', icon: 'contract' },
+                    { name: 'Contract List', component: 'SupplierContractList', title: 'Contract List', icon: 'list' },
                 ],
             },
         ],
