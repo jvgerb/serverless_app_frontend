@@ -11,20 +11,33 @@
 
       <div class="form-field">
         <select>
-          <option value="Heat">Type</option>
+          <option value="Heat">Industry Sector</option>
+        </select>
+        <div class="arrow-divider"></div>
+      </div>
+
+      <div class="form-field">
+        <select>
+          <option value="Heat">Supplier Type</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
     </template>
     <template v-slot:table-template="slotScope">
-      <td
-        v-for="(item, index) in headers.slice(0, -2)"
-        :key="index"
-      >{{ slotScope.props.item[item.value] }}</td>
+      <td>{{ slotScope.props.item['supplierID'] }}</td>
+      <td>{{ slotScope.props.item['supplierName'] }}</td>
+      <td>
+        <i class="icon-internet"></i>
+        {{ slotScope.props.item['homepage'] }}
+      </td>
+      <td>
+        <Rating></Rating>
+      </td>
       <td>
         <i class="icon-place"></i>
         {{ slotScope.props.item['place'] }}
       </td>
+      <td>{{ slotScope.props.item['zipCode'] }}</td>
       <td class="actions">
         <v-tooltip top>
           <template v-slot:activator="{ on }">
@@ -61,33 +74,29 @@ import Rating from '@/components/Rating.vue';
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
-export default class RepresentativeList extends Vue {
+export default class SupplierList extends Vue {
   headers = [
-    { text: '#', value: 'number' },
-    { text: 'Organization Name', value: 'organizationName' },
-    { text: 'Appointed', value: 'appointed' },
-    { text: 'Type', value: 'type' },
-    { text: 'Street', value: 'street' },
-    { text: 'Street Number', value: 'streetNumber' },
-    { text: 'Zip Code', value: 'zipCode' },
+    { text: 'Supplier ID', value: 'supplierID' },
+    { text: 'Supplier’s Name', value: 'supplierName' },
+    { text: 'Homepage', value: 'homepage' },
+    { text: 'Quality of Relationship', value: 'qualityOfRelationship' },
     { text: 'Place', value: 'place' },
+    { text: 'Zip Code', value: 'zipCode' },
     { text: 'Action', value: 'action', sortable: false },
   ];
   items = [...Array(100)].map((x, i) => ({
-    number:  (i + 1).toString().padStart( 3, '0'),
-    organizationName: 'Energicos GmBH',
-    appointed: 'Yes',
-    type: 'Lorem',
-    street: 'Genslerstraße 84',
-    streetNumber: 'Platz 18',
-    zipCode: '13359',
-    place: 'Ostbevern',
+    supplierID: '001',
+    supplierName: 'John Doe',
+    homepage: 'http://www.name.ext',
+    qualityOfRelationship: 'Genslerstraße 84',
+    place: 'Prag',
+    zipCode: '80808',
   }));
 }
 </script>
 
 <style lang="scss" scoped>
-td:nth-child(2) {
+td:nth-child(3) i {
   color: var(--accent-color);
 }
 </style>

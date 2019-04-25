@@ -108,7 +108,7 @@ export default class ListPageWrap extends Vue {
   }
 }
 
-table.theme--light.v-table {
+table.v-table {
   thead {
     tr {
       height: 44px;
@@ -135,6 +135,13 @@ table.theme--light.v-table {
         cursor: pointer;
         &:hover {
           color: var(--accent-color);
+        }
+      }
+      &.actions i {
+        margin-right: 20px;
+        color: var(--accent-color);
+        &:last-of-type {
+          margin-right: 0;
         }
       }
     }

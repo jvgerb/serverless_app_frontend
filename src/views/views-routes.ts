@@ -3,16 +3,19 @@ import ComingSoon from './ComingSoon.vue';
 import Customer from './Customer/Customer.vue';
 import CustomerList from './Customer/CustomerList.vue';
 import CustomerContact from './Customer/Contact.vue';
-import ContactList from './Customer/ContactList.vue';
+import CustomerContactList from './Customer/ContactList.vue';
 import Representative from './Customer/Representative.vue';
 import RepresentativeList from './Customer/RepresentativeList.vue';
 import CustomerContract from './Customer/Contract.vue';
-import ContractList from './Customer/ContractList.vue';
+import CustomerContractList from './Customer/ContractList.vue';
 
 /* SUPPLIER */
 import Supplier from './Supplier/Supplier.vue';
+import SupplierList from './Supplier/SupplierList.vue';
 import SupplierContact from './Supplier/Contact.vue';
+import SupplierContactList from './Supplier/ContactList.vue';
 import SupplierContract from './Supplier/Contract.vue';
+import SupplierContractList from './Supplier/ContractList.vue';
 
 export const views = {
     ComingSoon,
@@ -20,15 +23,18 @@ export const views = {
     Customer,
     CustomerList,
     CustomerContact,
-    ContactList,
+    CustomerContactList,
     Representative,
     RepresentativeList,
     CustomerContract,
-    ContractList,
+    CustomerContractList,
     /* SUPPLIER */
     Supplier,
+    SupplierList,
     SupplierContact,
+    SupplierContactList,
     SupplierContract,
+    SupplierContractList
 };
 
 export let routes: any[] = [
@@ -54,7 +60,7 @@ export let routes: any[] = [
                 icon: 'contact-person',
                 routes: [
                     { name: 'Contact', component: 'CustomerContact', title: 'Contact Person', icon: 'contact' },
-                    { name: 'Contact List', title: 'Contact List', icon: 'contacts-list' },
+                    { name: 'Contact List', component: 'CustomerContactList', title: 'Contact List', icon: 'contacts-list' },
                 ],
             },
             {
@@ -74,7 +80,7 @@ export let routes: any[] = [
                 icon: 'contract',
                 routes: [
                     { name: 'Contract', component: 'CustomerContract', title: 'Contract', icon: 'contract' },
-                    { name: 'Contract List', title: 'Contract List', icon: 'contract-list' },
+                    { name: 'Contract List', component: 'CustomerContractList', title: 'Contract List', icon: 'contract-list' },
                 ],
             },
         ],
@@ -96,7 +102,7 @@ export let routes: any[] = [
                 icon: 'contact-person',
                 routes: [
                     { name: 'Contact', component: 'SupplierContact', title: 'Contact Person', icon: '' },
-                    { name: 'Contact List', title: 'Contact List', icon: '' },
+                    { name: 'Contact List', component: 'SupplierContactList', title: 'Contact List', icon: '' },
                 ],
             },
             {
@@ -104,7 +110,7 @@ export let routes: any[] = [
                 icon: 'contract',
                 routes: [
                     { name: 'Contract', component: 'SupplierContract', title: 'Contract', icon: '' },
-                    { name: 'Contract List', title: 'Contract List', icon: '' },
+                    { name: 'Contract List', component: 'SupplierContractList', title: 'Contract List', icon: '' },
                 ],
             },
         ],

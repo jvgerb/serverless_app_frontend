@@ -76,7 +76,7 @@ export default class ContactList extends Vue {
     { text: 'Action', value: 'action', sortable: false },
   ];
   items = [...Array(100)].map((x, i) => ({
-    number: i + 1,
+    number:  (i + 1).toString().padStart( 3, '0'),
     firstName: 'John',
     middleName: 'Doe',
     surname: 'Baer',
