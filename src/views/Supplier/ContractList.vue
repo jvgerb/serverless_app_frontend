@@ -3,32 +3,35 @@
     <template v-slot:filter-template>
       <div class="form-field">
         <select>
-          <option value="Heat">Contract Product</option>
-        </select>
-        <i class="icon-warmth-heat"></i>
-        <div class="arrow-divider"></div>
-      </div>
-
-      <div class="form-field">
-        <select>
-          <option value="Heat">Type</option>
+          <option value="Heat">Product</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
 
       <div class="form-field">
         <select>
-          <option value="Heat">Valid To</option>
+          <option value="Heat">Category Type</option>
         </select>
-        <i class="icon-calendar"></i>
         <div class="arrow-divider"></div>
       </div>
     </template>
     <template v-slot:table-template="slotScope">
-      <td
-        v-for="(item, index) in headers.slice(0, -1)"
-        :key="index"
-      >{{ slotScope.props.item[item.value] }}</td>
+      <td>{{ slotScope.props.item['contractID'] }}</td>
+      <td>
+        <i class="icon-internet"></i>
+        {{ slotScope.props.item['product'] }}
+      </td>
+      <td>
+        <i class="icon-calendar"></i>
+        {{ slotScope.props.item['signedOn'] }}
+      </td>
+      <td>{{ slotScope.props.item['signedBy'] }}</td>
+      <td>{{ slotScope.props.item['contractPeriodMonth'] }}</td>
+      <td>
+        <i class="icon-calendar"></i>
+        {{ slotScope.props.item['validTo'] }}
+      </td>
+      <td>{{ slotScope.props.item['possibleTerminationDate'] }}</td>
       <td class="actions">
         <v-tooltip top>
           <template v-slot:activator="{ on }">
@@ -68,30 +71,28 @@ import Rating from '@/components/Rating.vue';
 export default class ContractList extends Vue {
   headers = [
     { text: 'Contract ID', value: 'contractID' },
-    { text: 'Contract Period', value: 'contractPeriod' },
+    { text: 'Product', value: 'product' },
     { text: 'Signed On', value: 'signedOn' },
     { text: 'Signed By', value: 'signedBy' },
-    { text: 'Consumption Unit', value: 'consumptionUnit' },
-    { text: 'Notice Given On', value: 'noticeGivenOn' },
-    { text: 'Notice Given To', value: 'noticeGivenTo' },
-    { text: 'Capacity Start Value', value: 'capacityStartValue' },
+    { text: 'Contract Period (Month)', value: 'contractPeriodMonth' },
+    { text: 'Valid To', value: 'validTo' },
+    { text: 'Possible Termination Date', value: 'possibleTerminationDate' },
     { text: 'Action', value: 'action', sortable: false },
   ];
   items = [...Array(100)].map((x, i) => ({
     contractID: 'ENN-000123',
-    contractPeriod: '60',
+    product: 'Heat',
     signedOn: '15.11.2008',
-    signedBy: 'John Doe',
-    consumptionUnit: 'EUR/MWh',
-    noticeGivenOn: '15.2.2018',
-    noticeGivenTo: '31.12.2018',
-    capacityStartValue: '340',
+    signedBy: 'John Doe, ABC LLP, Berlin',
+    contractPeriodMonth: '60',
+    validTo: '15.11.2008',
+    possibleTerminationDate: 'End of Year',
   }));
 }
 </script>
 
 <style lang="scss" scoped>
-td:nth-child(2) {
+td:nth-child(1) {
   color: var(--accent-color);
 }
 </style>

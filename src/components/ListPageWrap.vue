@@ -132,13 +132,13 @@ table.v-table {
         font-size: 16px;
         margin-right: 10px;
         color: var(--icon-color);
-        cursor: pointer;
-        &:hover {
-          color: var(--accent-color);
-        }
+        // &:hover {
+        //   color: var(--accent-color);
+        // }
       }
       &.actions i {
         margin-right: 20px;
+        cursor: pointer;
         color: var(--accent-color);
         &:last-of-type {
           margin-right: 0;
