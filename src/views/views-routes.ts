@@ -19,6 +19,9 @@ import SupplierContractList from './Supplier/ContractList.vue';
 
 /* BUILDING */
 import Building from './Building/Building.vue';
+import BuildingList from './Building/BuildingList.vue';
+import Entrance from './Building/Entrance.vue';
+import EntranceList from './Building/EntranceList.vue';
 
 
 export const views = {
@@ -40,7 +43,10 @@ export const views = {
     SupplierContract,
     SupplierContractList,
     /* BUILDING */
-    Building
+    Building,
+    BuildingList,
+    Entrance,
+    EntranceList,
 };
 
 export let routes: any[] = [
