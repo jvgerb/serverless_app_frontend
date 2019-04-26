@@ -135,16 +135,16 @@ export let routes: any[] = [
                 name: 'Building',
                 icon: 'building-line',
                 routes: [
-                    { name: 'Building', title: 'Building', icon: '' },
-                    { name: 'Building List', title: 'Building List', icon: '' },
+                    { name: 'Building', title: 'Building', icon: 'building-line' },
+                    { name: 'Building List', title: 'Building List', icon: 'list' },
                 ],
             },
             {
                 name: 'Entrance',
                 icon: 'entrance',
                 routes: [
-                    { name: 'Entrance', title: 'Entrance', icon: '' },
-                    { name: 'Entrance List', title: 'Entrance List', icon: '' },
+                    { name: 'Entrance', title: 'Entrance', icon: 'entrance' },
+                    { name: 'Entrance List', title: 'Entrance List', icon: 'list' },
                 ],
             },
         ],
