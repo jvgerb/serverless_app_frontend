@@ -6,6 +6,8 @@ import { ContractListItem } from './models/customer/contract-list-item';
 import { ContactPersonListItem } from './models/customer/contact-person-list-item';
 import { Customer } from './models/customer/customer';
 import { ContactPerson } from './models/customer/contact-person';
+import { Representative} from './models/customer/representative';
+import { Contract } from './models/customer/contract';
 
 export default class extends ApiBase {
 
@@ -57,5 +59,23 @@ export default class extends ApiBase {
     const customer = await this.getCustomerById(data.customerId);
     customer.customer_contact_person = data.mapOut();
     return await this.postCustomer(customer);
+  }
+
+  async postRepresentative(data: Representative) {
+    if(!data.customerId) throw 'No Customer ID';
+
+    const customer = await this.getCustomerById(data.customerId);
+    customer.customer_representative = data.mapOut();
+    customer.customer_representative_appointed = data.appointed;
+    return await this.postCustomer(customer);
+  }
+
+  async postContract(data: Contract) {
+    if(!data.customerId) throw 'No Customer ID';
+
+    const customer = await this.getCustomerById(data.customerId);
+    data.customerId = customer.customerId;
+    data.customerName = customer.customerName;
+    return await this.post(`customer_contract`, data.mapOut());
   }
 }
