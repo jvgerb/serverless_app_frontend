@@ -1,37 +1,40 @@
 <template>
-  <ListPageWrap :headers="headers" :items="items">
+  <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select>
-          <option value="Heat">Place</option>
+        <select v-model="placeZip" @change="update">
+          <option value>Place</option>
+          <option v-for="option in placeZips" :value="option" :key="option">{{ option }}</option>
         </select>
         <i class="icon-place"></i>
         <div class="arrow-divider"></div>
       </div>
 
       <div class="form-field">
-        <select>
-          <option value="Heat">Industry Sector</option>
+        <select v-model="industrySector" @change="update">
+          <option value>Industry Sector</option>
+          <option v-for="option in industrySectors" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
 
       <div class="form-field">
-        <select>
-          <option value="Heat">Supplier Type</option>
+        <select v-model="supplierType" @change="update">
+          <option value>Supplier Type</option>
+          <option v-for="option in supplierTypes" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
     </template>
     <template v-slot:table-template="slotScope">
-      <td>{{ slotScope.props.item['supplierID'] }}</td>
-      <td>{{ slotScope.props.item['supplierName'] }}</td>
+      <td>{{ slotScope.props.item['supplierId'] }}</td>
+      <td>{{ slotScope.props.item['suppliersName'] }}</td>
       <td>
         <i class="icon-internet"></i>
         {{ slotScope.props.item['homepage'] }}
       </td>
       <td>
-        <Rating></Rating>
+          <Rating :value="slotScope.props.item.qualityOfRelationship" :readonly="true"></Rating>
       </td>
       <td>
         <i class="icon-place"></i>
@@ -61,37 +64,60 @@
     </template>
   </ListPageWrap>
 </template>
-    </table-template>
-  </ListPageWrap>
-</template>
+
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ListPageWrap from '@/components/ListPageWrap.vue';
 import FormCard from '@/components/FormCard.vue';
 import Rating from '@/components/Rating.vue';
+import * as api from '@/services/api';
+import supplier from '../../services/api/supplier';
 
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class SupplierList extends Vue {
+  loading = false;  placeZip = '';
+  placeZips: any[] = [];
+  industrySector = '';
+  industrySectors: any[] = [];
+  supplierType = '';
+  supplierTypes: any[] = [];
+
   headers = [
-    { text: 'Supplier ID', value: 'supplierID' },
-    { text: 'Supplier’s Name', value: 'supplierName' },
+    { text: 'Supplier ID', value: 'supplierId' },
+    { text: 'Supplier’s Name', value: 'suppliersName' },
     { text: 'Homepage', value: 'homepage' },
     { text: 'Quality of Relationship', value: 'qualityOfRelationship' },
     { text: 'Place', value: 'place' },
     { text: 'Zip Code', value: 'zipCode' },
     { text: 'Action', value: 'action', sortable: false },
   ];
-  items = [...Array(100)].map((x, i) => ({
-    supplierID: '001',
-    supplierName: 'John Doe',
-    homepage: 'http://www.name.ext',
-    qualityOfRelationship: 'Genslerstraße 84',
-    place: 'Prag',
-    zipCode: '80808',
-  }));
+  items = [];
+
+  async update() {
+    this.loading = true;
+    this.items = await api.supplier.getSupplierList(
+      this.placeZip,
+      this.industrySector,
+      this.supplierType
+    );
+    this.loading = false;
+  }
+
+  async created() {
+    await this.update();
+    this.placeZips = [
+      ...new Set(this.items.map((x: any) => x.data.supplier_address_search)),
+    ];
+    this.industrySectors = [
+      ...new Set(this.items.map((x: any) => x.data.supplier_industry_sector)),
+    ];
+    this.supplierTypes = [
+      ...new Set(this.items.map((x: any) => x.data.supplier_type)),
+    ];
+  }
 }
 </script>
 

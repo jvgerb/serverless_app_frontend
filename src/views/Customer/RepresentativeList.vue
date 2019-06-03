@@ -1,17 +1,20 @@
 <template>
-  <ListPageWrap :headers="headers" :items="items">
+  <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select>
-          <option value="Heat">Place</option>
+        <select v-model="placeZip" @change="update">
+          <option value>Place</option>
+          <option v-for="place in places" :value="place" :key="place">{{ place }}</option>
         </select>
-        <i class="icon-place"></i>
+        <i class="icon-location"></i>
         <div class="arrow-divider"></div>
       </div>
 
       <div class="form-field">
-        <select>
-          <option value="Heat">Type</option>
+        <select v-model="type" @change="update">
+          <option value>Type</option>
+          <option value="contact">Contact</option>
+          <option value="company">Company</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
@@ -48,20 +51,24 @@
     </template>
   </ListPageWrap>
 </template>
-    </table-template>
-  </ListPageWrap>
-</template>
+
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ListPageWrap from '@/components/ListPageWrap.vue';
 import FormCard from '@/components/FormCard.vue';
 import Rating from '@/components/Rating.vue';
+import * as api from '@/services/api';
 
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class RepresentativeList extends Vue {
+  loading = false;  placeZip = '';
+  type = '';
+
+  places: any[] = [];
+
   headers = [
     { text: '#', value: 'number' },
     { text: 'Organization Name', value: 'organizationName' },
@@ -73,16 +80,27 @@ export default class RepresentativeList extends Vue {
     { text: 'Place', value: 'place' },
     { text: 'Action', value: 'action', sortable: false },
   ];
-  items = [...Array(100)].map((x, i) => ({
-    number:  (i + 1).toString().padStart( 3, '0'),
-    organizationName: 'Energicos GmBH',
-    appointed: 'Yes',
-    type: 'Lorem',
-    street: 'Genslerstraße 84',
-    streetNumber: 'Platz 18',
-    zipCode: '13359',
-    place: 'Ostbevern',
-  }));
+  items = [];
+
+  async update() {
+    this.loading = true;
+    this.items = (await api.customer.getRepresentativeList(
+      this.placeZip,
+      this.type
+    )).map((x: any, i: number) => ({
+      number: (i + 1).toString().padStart(3, '0'),
+      ...x,
+    }));
+    this.loading = false;
+  }
+
+  async created() {
+    await this.update();
+    this.places = this.items.map(
+      (x: any) => x.data.customer_delivery_address_search
+    );
+    this.places = [...new Set(this.places)];
+  }
 }
 </script>
 

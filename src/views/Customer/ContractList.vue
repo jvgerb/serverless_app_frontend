@@ -1,17 +1,19 @@
 <template>
-  <ListPageWrap :headers="headers" :items="items">
+  <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select>
-          <option value="Heat">Contract Product</option>
+        <select v-model="product" @change="update">
+          <option value>Contract Product</option>
+          <option v-for="option in products" :value="option" :key="option">{{ option }}</option>
         </select>
         <i class="icon-warmth-heat"></i>
         <div class="arrow-divider"></div>
       </div>
 
       <div class="form-field">
-        <select>
-          <option value="Heat">Type</option>
+        <select v-model="partnerType" @change="update">
+          <option value>Type</option>
+          <option v-for="option in partnerTypes" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
@@ -52,22 +54,25 @@
     </template>
   </ListPageWrap>
 </template>
-    </table-template>
-  </ListPageWrap>
-</template>
+
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ListPageWrap from '@/components/ListPageWrap.vue';
 import FormCard from '@/components/FormCard.vue';
 import Rating from '@/components/Rating.vue';
-
+import * as api from '@/services/api';
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class ContractList extends Vue {
+  loading = false;  product = '';
+  products: any[] = [];
+  partnerTypes: any[] = [];
+  partnerType = '';
+
   headers = [
-    { text: 'Contract ID', value: 'contractID' },
+    { text: 'Contract ID', value: 'contractId' },
     { text: 'Contract Period', value: 'contractPeriod' },
     { text: 'Signed On', value: 'signedOn' },
     { text: 'Signed By', value: 'signedBy' },
@@ -77,16 +82,29 @@ export default class ContractList extends Vue {
     { text: 'Capacity Start Value', value: 'capacityStartValue' },
     { text: 'Action', value: 'action', sortable: false },
   ];
-  items = [...Array(100)].map((x, i) => ({
-    contractID: 'ENN-000123',
-    contractPeriod: '60',
-    signedOn: '15.11.2008',
-    signedBy: 'John Doe',
-    consumptionUnit: 'EUR/MWh',
-    noticeGivenOn: '15.2.2018',
-    noticeGivenTo: '31.12.2018',
-    capacityStartValue: '340',
-  }));
+
+  items = [];
+
+  async update() {
+    this.loading = true;
+    this.items = await api.customer.getContractList(
+      this.product,
+      this.partnerType,
+      ''
+    );
+    this.loading = false;
+  }
+
+  async created() {
+    await this.update();
+    this.products = this.items.map((x: any) => x.data.contract_product);
+    this.products = [...new Set(this.products)];
+
+    this.partnerTypes = this.items.map(
+      (x: any) => x.data.contract_partner_type
+    );
+    this.partnerTypes = [...new Set(this.partnerTypes)];
+  }
 }
 </script>
 

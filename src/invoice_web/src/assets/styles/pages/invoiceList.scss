@@ -1,0 +1,122 @@
+.wizard-header {
+  margin-top: 15px;
+}
+
+.vuetable {
+  font-family: 'energicos-regular';
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.vuetable-pagination a.btn {
+  border-color: transparent !important;
+  border-radius: inherit;
+  background-image: none !important;
+}
+
+.vuetable-pagination a.btn-primary {
+  background-color: #c30017 !important;
+  color: white;
+}
+
+.vuetable-pagination a {
+  color: #c30017;
+}
+
+.orange.glyphicon {
+  color: orange;
+}
+
+th.sortable {
+  color: #c30017;
+}
+
+.vuetable-th-component-sequence {
+  color: #c30017;
+}
+
+.vuetable-th-slot-sent {
+  color: #c30017;
+}
+
+.vuetable-th-slot-slot-actions {
+  color: #c30017;
+}
+
+.btn-editRow {
+  background-color: #c30017;
+  border-color: #c30017;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 12px;
+  margin-right: 0.1rem;
+
+  .glyphicon {
+    top: 3px;
+  }
+  border-radius: 0.3rem;
+  // min-width: 140px;
+}
+
+.btn-deleteRow {
+  background-color: rgb(195, 0, 23);
+  border-color: rgb(195, 0, 23);
+  color: white;
+}
+
+.invoice-infos {
+  margin-bottom: 30px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.invoiceListContainer {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#table-wrapper {
+  flex: 1 auto;
+  padding: 20px 15px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#table-content-wrapper {
+  overflow: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 auto;
+}
+
+#table-content-wrapper > div.vuetable-pagination {
+  background: transparent !important;
+}
+
+#scroll-table {
+  overflow-y: scroll;
+  max-height: 490px;
+}
+
+.pull-right {
+  float: right!important;
+  margin-top: 2rem;
+  height: 50px;
+  background: white;
+}
+
+.nav-tabs > li > a {
+  color: #2c3e50;
+}
+
+.vuetable-th-gutter {
+  display: none;
+}

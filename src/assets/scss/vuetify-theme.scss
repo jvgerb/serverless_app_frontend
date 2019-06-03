@@ -12,3 +12,33 @@
     border-color: var(--accent-color) transparent transparent transparent;
   }
 }
+
+.v-card.v-sheet.theme--light {
+  border-radius: 10px;
+  .v-card__title {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto 1fr auto;
+    height: 80px;
+    padding: 34px;
+    border-bottom: solid 1px #00000033;
+    background-color: #f8f8f8;
+    font-size: 12px;
+    font-family: "Antonio Bold";
+    letter-spacing: 1.5px;
+    color: var(--accent-color);
+
+    .icon-close {
+      font-size: 20px;
+      color: black;
+      cursor: pointer;
+      border-radius: 20px;
+      &:hover {
+        opacity: 0.6;
+      }
+      &:active {
+        opacity: 0.8;
+      }
+    }
+  }
+}

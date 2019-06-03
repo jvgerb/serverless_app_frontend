@@ -1,23 +1,26 @@
 <template>
-  <ListPageWrap :headers="headers" :items="items">
+  <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select>
-          <option value="Heat">Street Number</option>
+        <select v-model="streetNumber" @change="update">
+          <option value>Street Number</option>
+          <option v-for="option in streetNumbers" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
 
       <div class="form-field">
-        <select>
-          <option value="Heat">Entrance ID</option>
+        <select v-model="entranceId" @change="update">
+          <option value>Entrance ID</option>
+          <option v-for="option in entranceIds" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
     </template>
     <template v-slot:table-template="slotScope">
+      <td style="color:var(--accent-color)">{{ slotScope.props.item['entranceId'] }}</td>
       <td
-        v-for="(item, index) in headers.slice(0, -1)"
+        v-for="(item, index) in headers.slice(1, -1)"
         :key="index"
       >{{ slotScope.props.item[item.value] }}</td>
       <td class="actions">
@@ -43,22 +46,27 @@
     </template>
   </ListPageWrap>
 </template>
-    </table-template>
-  </ListPageWrap>
-</template>
+
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ListPageWrap from '@/components/ListPageWrap.vue';
 import FormCard from '@/components/FormCard.vue';
 import Rating from '@/components/Rating.vue';
-
+import * as api from '@/services/api';
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class EntranceList extends Vue {
+  loading = false;
+
+  streetNumber = '';
+  streetNumbers: any[] = [];
+  entranceId = '';
+  entranceIds: any[] = [];
+
   headers = [
-    { text: 'Entrance ID', value: 'entranceID' },
+    { text: 'Entrance ID', value: 'entranceId' },
     { text: 'Entrance Description', value: 'entranceDescription' },
     { text: 'Entrance Street', value: 'entranceStreet' },
     { text: 'Entrance Street Number', value: 'entranceStreetNumber' },
@@ -66,14 +74,28 @@ export default class EntranceList extends Vue {
     { text: 'Entrance Place', value: 'entrancePlace' },
     { text: 'Action', value: 'action', sortable: false },
   ];
-  items = [...Array(100)].map((x, i) => ({
-    entranceID: 'entrance_1',
-    entranceDescription: 'Side entrance',
-    entranceStreet: 'Oraniendamm',
-    entranceStreetNumber: '8',
-    entranceZipCode: '13469',
-    entrancePlace: 'Berlin',
-  }));
+
+  items = [];
+
+  async update() {
+    this.loading = true;
+    this.items = await api.building.getEntranceList(
+      this.streetNumber,
+      this.entranceId
+    );
+    this.loading = false;
+  }
+
+  async created() {
+    await this.update();
+    this.streetNumbers = [
+      ...new Set(this.items.map((x: any) => x.data.entrance_street_number)),
+    ];
+
+    this.entranceIds = [
+      ...new Set(this.items.map((x: any) => x.data.entrance_id)),
+    ];
+  }
 }
 </script>
 

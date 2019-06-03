@@ -1,0 +1,74 @@
+{
+  "name": "invoice_web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "D": "^1.0.0",
+    "aws-amplify": "^1.1.22",
+    "aws-amplify-vue": "^0.2.7",
+    "axios": "^0.17.1",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "core-js": "^2.6.5",
+    "css-loader": "^2.1.1",
+    "keyboard-shortcut": "^1.2.0",
+    "lodash": "^4.17.10",
+    "moment": "^2.20.1",
+    "popper.js": "^1.15.0",
+    "ramda": "^0.26.1",
+    "sweetalert": "^2.1.0",
+    "tether": "^1.4.3",
+    "themify-icons": "^1.0.0",
+    "vue": "^2.6.6",
+    "vue-events": "^3.1.0",
+    "vue-form-generator": "^2.3.3",
+    "vue-form-wizard": "^0.8.2",
+    "vue-full-loading": "^1.2.1",
+    "vue-json-editor": "^1.2.1",
+    "vue-nav-tabs": "^0.5.7",
+    "vue-router": "^3.0.2",
+    "vue-styled-components": "^1.4.4",
+    "vuejs-datepicker": "^0.9.24",
+    "vuetify": "^1.5.12",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.5.0",
+    "@vue/cli-plugin-eslint": "^3.5.0",
+    "@vue/cli-service": "^3.5.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.5.21"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

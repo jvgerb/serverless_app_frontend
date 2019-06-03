@@ -1,16 +1,25 @@
 <template>
   <div class="form-card">
+    <button class="save-btn" @click="save">
+      <i class="icon-floppy"></i>
+      <span>Save</span>
+    </button>
     <slot></slot>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Emit } from 'vue-property-decorator';
 
 @Component({
   components: {},
 })
-export default class FormCard extends Vue {}
+export default class FormCard extends Vue {
+  @Emit()
+  save(){
+
+  }
+}
 </script>
 
 <style lang="scss">
@@ -19,6 +28,30 @@ export default class FormCard extends Vue {}
   border-radius: 5px;
   background-color: white;
   box-shadow: 0 0 2px #979797;
+  .save-btn {
+    position: absolute;
+    top: 100px;
+    right: 28px;
+    width: 104px;
+    height: 45px;
+    background: var(--accent-color);
+    border-radius: 4px;
+    color: white;
+    letter-spacing: 0.75px;
+    font-size: 13px;
+    transition: all 0.4s;
+    &:hover {
+      filter: contrast(2);
+    }
+    &:active {
+      filter: contrast(.8);
+    }
+    i {
+      font-size: 18px;
+      margin-right: 10px;
+      vertical-align: bottom;
+    }
+  }
   hr {
     margin: 18px 0 0 0;
     border: none;
@@ -32,14 +65,15 @@ export default class FormCard extends Vue {}
     position: relative;
     box-sizing: border-box;
     margin-top: 15px;
-    padding-left: 24px;
+    padding-left: 12px;
     font-size: 12px;
-    width: 33.333333333333336%;
+    width: calc(100% / 3);
     &:first-child {
       padding-left: 0;
+      width: calc(100% / 3 - 12px);
     }
     &.col-2 {
-      width: 66.66666666666667%;
+      width: calc(100% / 3 * 2);
     }
     &.col-3 {
       width: 100%;

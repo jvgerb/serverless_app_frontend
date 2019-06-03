@@ -19,38 +19,63 @@ import { Component, Vue } from 'vue-property-decorator';
 import Navbar from '@/components/Navbar.vue';
 import Sidebar from '@/components/Sidebar.vue';
 import { views, routes } from './views-routes';
-
 @Component({
   components: { Navbar, Sidebar, ...views },
 })
 export default class Main extends Vue {
-  get currentContent() {
-    const menuRoute =
+  get menuRoute() {
+    return (
       this.$route.params.menu &&
-      routes.find((x: any) => this.$route.params.menu.toLowerCase() == x.link);
-
-    const submenuRoute =
-      menuRoute &&
+      routes.find((x: any) => this.$route.params.menu.toLowerCase() == x.link)
+    );
+  }
+  get subMenuRoute() {
+    return (
+      this.menuRoute &&
       this.$route.params.submenu &&
-      menuRoute.routes.find(
+      this.menuRoute.routes.find(
         (x: any) => this.$route.params.submenu.toLowerCase() == x.link
-      );
-
-    const tabRoute =
-      submenuRoute &&
+      )
+    );
+  }
+  get tabRoute() {
+    return (
+      this.subMenuRoute &&
       this.$route.params.tab &&
-      submenuRoute.routes.find(
+      this.subMenuRoute.routes.find(
         (x: any) => this.$route.params.tab.toLowerCase() == x.link
+      )
+    );
+  }
+  get currentContent() {
+    // redirect to default route if menu, submenu or tab does not exist
+    if (!this.menuRoute) {
+      this.$router.replace(`/customer/customer/customer`);
+    } else if (!this.subMenuRoute) {
+      this.$router.replace(
+        `/${this.menuRoute.link}/${this.menuRoute.routes[0].link}/${
+          this.menuRoute.routes[0].routes[0].link
+        }`
       );
-
-    const currentRoute = tabRoute || {};
+    } else if (!this.tabRoute) {
+      this.$router.replace(
+        `/${this.menuRoute.link}/${this.subMenuRoute.link}/${
+          this.subMenuRoute.routes[0].link
+        }`
+      );
+    }
+    const currentRoute = this.tabRoute || {};
     const currentViewName =
-      tabRoute && (tabRoute.component || tabRoute.name.replace(/ /g, ''));
-
+      this.tabRoute &&
+      (
+        this.tabRoute.component ||
+        this.tabRoute.title ||
+        this.tabRoute.name
+      ).replace(/[^a-zA-Z0-9]/g, '');
     return {
       title: currentRoute.title,
       viewName:
-        Object.keys(views).includes(currentViewName) && tabRoute
+        Object.keys(views).includes(currentViewName) && this.tabRoute
           ? currentViewName
           : 'ComingSoon',
       icon: currentRoute.icon,
@@ -60,24 +85,7 @@ export default class Main extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.grid-container {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    'sidebar navbar'
-    'sidebar content';
-}
-.sidebar {
-  grid-area: sidebar;
-}
-
-.navbar {
-  grid-area: navbar;
-}
-
 .content {
-  grid-area: content;
   background-color: var(--second-bg-color);
   h1 {
     margin: 0;
@@ -90,9 +98,11 @@ export default class Main extends Vue {
       margin-right: 6px;
     }
   }
-
   .view-container {
     padding: 28px 45px;
+    width: calc(
+      100vw - var(--sidebar-menu-width) - var(--sidebar-submenu-width)
+    );
   }
 }
 </style>

@@ -1,0 +1,104 @@
+.create-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+  height: 90px;
+}
+
+.create-painel {
+	margin-bottom: 20px;
+	background-color: #fff;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  border-color: #ddd;
+  height: calc(100% - 110px);
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-painel-heading {
+	color: #333;
+	background-color: #f3f2ee;
+	border-color: #ddd;
+  text-align: left;
+	padding: 10px 15px;
+	border-bottom: 1px solid transparent;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+.create-body {
+  padding: 15px;
+  display: flex;
+  flex: 1 auto;
+  overflow: hidden;
+}
+
+.create-form-wizard {
+  fieldset {
+    border: none;
+  }
+  .wizard-header {
+    display: none;
+  }
+  .wizard-navigation {
+    display: flex;
+    flex-direction: column;
+    flex: 1 auto;
+    margin-bottom: 15px;
+    border: solid 1px #d8d8d8;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    .wizard-nav-pills{
+      margin-top: -3px;
+    }
+    .wizard-progress-with-circle{
+      display: none;
+    }
+    .wizard-tab-content{
+      min-height: 100px;
+      padding: 0px 20px 0px;
+      overflow: auto;
+      margin-top: 40px;
+    }
+  }
+  .wizard-card-footer {
+    padding: 0 35px;
+    height: 50px;
+  }
+  .md {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    flex-direction: column;
+
+    .wizard-card-footer {
+      width: 100%;
+      padding: 0;
+    }
+  }
+}
+
+.create-form-generator {
+  text-align: left;
+
+  .errors {
+    color: #c30017;
+  }
+}
+
+.has-success .form-control {
+  border-color: #ccc !important;
+}
+
+.wizard-btn {
+  border-radius: 0px !important;
+}

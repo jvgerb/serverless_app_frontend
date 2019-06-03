@@ -18,13 +18,17 @@ body {
   padding: 0;
   height: 100%;
   font-family: "Roboto", sans-serif;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 h1,
 h2,
-h3 {
+h3,
+h5 {
   font-family: "Antonio Light";
   font-weight: 200;
+  letter-spacing: 0.75px;
 }
 
 h1 {
@@ -38,4 +42,43 @@ h2 {
 h3 {
   font-size: 22px;
   color: var(--accent-color);
+}
+
+/* Grid system */
+.grid-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "sidebar navbar"
+    "sidebar content";
+
+  .sidebar {
+    grid-area: sidebar;
+    display: grid;
+    grid-template-columns: var(--sidebar-menu-width) var(--sidebar-submenu-width);
+    grid-template-rows: auto;
+    grid-template-areas: "menu submenu";
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    .menu {
+      grid-area: menu;
+      display: grid;
+      grid-template-columns: var(--sidebar-menu-width);
+      grid-template-rows: var(--nav-height) auto 150px;
+      grid-template-areas:
+        "top-menu"
+        "middle-menu"
+        "bottom-menu";
+    }
+  }
+
+  .navbar {
+    grid-area: navbar;
+  }
+
+  .content {
+    grid-area: content;
+  }
 }

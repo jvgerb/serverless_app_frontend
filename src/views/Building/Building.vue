@@ -46,7 +46,7 @@
       </div>
 
       <div class="form-field">
-        <label>heating_area_total (m^2)</label>
+        <label>Heating Area Total (m^2)</label>
         <input type="text" placeholder="1250">
       </div>
     </div>

@@ -1,23 +1,26 @@
 <template>
-  <ListPageWrap :headers="headers" :items="items">
+  <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select>
-          <option value="Heat">Building Name</option>
+        <select v-model="buildingName" @change="update">
+          <option value>Building Name</option>
+          <option v-for="option in buildingNames" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
 
       <div class="form-field">
-        <select>
-          <option value="Heat">Category</option>
+        <select v-model="category" @change="update">
+          <option value>Category</option>
+          <option v-for="option in categories" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
     </template>
     <template v-slot:table-template="slotScope">
+      <td style="color:var(--accent-color)">{{ slotScope.props.item['buildingId'] }}</td>
       <td
-        v-for="(item, index) in headers.slice(0, -1)"
+        v-for="(item, index) in headers.slice(1, -1)"
         :key="index"
       >{{ slotScope.props.item[item.value] }}</td>
       <td class="actions">
@@ -43,22 +46,26 @@
     </template>
   </ListPageWrap>
 </template>
-    </table-template>
-  </ListPageWrap>
-</template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ListPageWrap from '@/components/ListPageWrap.vue';
 import FormCard from '@/components/FormCard.vue';
 import Rating from '@/components/Rating.vue';
-
+import * as api from '@/services/api';
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class BuildingList extends Vue {
+  loading = false;
+
+  buildingName = '';
+  buildingNames: any[] = [];
+  category = '';
+  categories: any[] = [];
+
   headers = [
-    { text: 'Building ID', value: 'buildingID' },
+    { text: 'Building ID', value: 'buildingId' },
     { text: 'Building Name', value: 'buildingName' },
     { text: 'Category', value: 'category' },
     { text: 'Year', value: 'year' },
@@ -67,15 +74,27 @@ export default class BuildingList extends Vue {
     { text: 'Number of Apartments', value: 'numberOfApartments' },
     { text: 'Action', value: 'action', sortable: false },
   ];
-  items = [...Array(100)].map((x, i) => ({
-    buildingID: '342434',
-    buildingName: 'Steinberg',
-    category: 'Apartment Building',
-    year: '1980',
-    numberOfEntrances: '2',
-    numberOfFloors: '5',
-    numberOfApartments: '32',
-  }));
+  items = [];
+
+  async update() {
+    this.loading = true;
+    this.items = await api.building.getBuildingList(
+      this.buildingName,
+      this.category
+    );
+    this.loading = false;
+  }
+
+  async created() {
+    await this.update();
+    this.buildingNames = [
+      ...new Set(this.items.map((x: any) => x.data.building_name)),
+    ];
+
+    this.categories = [
+      ...new Set(this.items.map((x: any) => x.data.building_category)),
+    ];
+  }
 }
 </script>
 

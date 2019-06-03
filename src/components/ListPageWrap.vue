@@ -7,6 +7,7 @@
       </div>
     </div>
     <v-data-table
+      :loading="loading"
       :headers="headers"
       :items="items"
       :pagination.sync="pagination"
@@ -37,6 +38,7 @@ import Rating from '@/components/Rating.vue';
 export default class ListPageWrap extends Vue {
   @Prop() headers!: any[];
   @Prop() items!: any[];
+  @Prop() loading!: boolean;
 
   pagination: any = { rowsPerPage: 10 };
   rowsPerPageItems = [8, 10, 15];
@@ -73,8 +75,9 @@ export default class ListPageWrap extends Vue {
   }
 
   .form-field {
-    width: 200px;
+    width: 220px;
     &:first-child {
+      width: 220px - 12px;
       select ~ i {
         left: 12px;
       }
@@ -86,13 +89,14 @@ export default class ListPageWrap extends Vue {
       padding-left: 36px;
       color: black;
       background-position: calc(100% - 15px);
+      padding-right: 50px;
       &::after {
         content: ' ';
       }
     }
     select ~ i {
       position: absolute;
-      left: 36px;
+      left: 24px;
       top: calc(50% - 8px);
       color: var(--icon-color);
       font-size: 16px;
@@ -116,7 +120,7 @@ table.v-table {
     }
     tr:first-child {
       border-top: 1px solid rgba(0, 0, 0, 0.12);
-      border-bottom: none;
+      border-bottom: none !important;
       box-shadow: 0 2px 3px #00000021;
     }
     th {

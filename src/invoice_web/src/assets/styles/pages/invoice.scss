@@ -1,0 +1,72 @@
+.vue-form-wizard.md {
+
+  height: 100%;
+  padding-bottom: 0px;
+  display: grid;
+  grid-auto-rows: 100px auto 100px;
+
+  .wizard-icon-circle {
+    width: 49px;
+    height: 50px;
+  }
+
+  .wizard-card-footer {
+    padding: 20px;
+    width: 210mm;
+    margin: 0 auto;
+  }
+
+  .wizard-nav-pills>li>a {
+    color: #9a9a9a;
+    font-family: 'energicos-regular';
+  }
+
+  .wizard-progress-bar {
+    transition: width 1s ease !important;
+  }
+
+  .wizard-icon-container:focus,
+  .wizard-icon-circle:focus,
+  #step-AdditionalInfo2:focus {
+    outline: none;
+  }
+
+  .wizard-navigation {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wizard-tab-content {
+    overflow: auto;
+    height: 100%;
+  }
+
+  .wizard-nav-pills {
+    height: 100px;
+  }
+
+}
+
+.backgroudLayer {
+  position: absolute;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.vdp-datepicker > div:nth-child(1) {
+  text-align: center;
+}
+
+li:last-child{
+  font-family: 'Energicos-bold';
+}
+
+.energicos_last_page_table li:last-child,
+.energicos_key_components li:last-child{
+  font-family: 'Energicos-regular';
+}

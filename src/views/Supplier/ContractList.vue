@@ -1,26 +1,25 @@
 <template>
-  <ListPageWrap :headers="headers" :items="items">
+  <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select>
-          <option value="Heat">Product</option>
+        <select v-model="product" @change="update">
+          <option value>Product</option>
+          <option v-for="option in products" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
 
       <div class="form-field">
-        <select>
-          <option value="Heat">Category Type</option>
+        <select v-model="categoryType" @change="update">
+          <option value>Category Type</option>
+          <option v-for="option in categoryTypes" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
     </template>
     <template v-slot:table-template="slotScope">
       <td>{{ slotScope.props.item['contractID'] }}</td>
-      <td>
-        <i class="icon-internet"></i>
-        {{ slotScope.props.item['product'] }}
-      </td>
+      <td>{{ slotScope.props.item['product'] }}</td>
       <td>
         <i class="icon-calendar"></i>
         {{ slotScope.props.item['signedOn'] }}
@@ -55,20 +54,23 @@
     </template>
   </ListPageWrap>
 </template>
-    </table-template>
-  </ListPageWrap>
-</template>
+
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ListPageWrap from '@/components/ListPageWrap.vue';
 import FormCard from '@/components/FormCard.vue';
 import Rating from '@/components/Rating.vue';
-
+import * as api from '@/services/api';
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class ContractList extends Vue {
+  loading = false;  product = '';
+  products: any[] = [];
+  categoryType = '';
+  categoryTypes: any[] = [];
+
   headers = [
     { text: 'Contract ID', value: 'contractID' },
     { text: 'Product', value: 'product' },
@@ -79,15 +81,33 @@ export default class ContractList extends Vue {
     { text: 'Possible Termination Date', value: 'possibleTerminationDate' },
     { text: 'Action', value: 'action', sortable: false },
   ];
-  items = [...Array(100)].map((x, i) => ({
-    contractID: 'ENN-000123',
-    product: 'Heat',
-    signedOn: '15.11.2008',
-    signedBy: 'John Doe, ABC LLP, Berlin',
-    contractPeriodMonth: '60',
-    validTo: '15.11.2008',
-    possibleTerminationDate: 'End of Year',
-  }));
+
+  items = [];
+
+  async update() {
+    this.loading = true;
+    this.items = (await api.supplier.getContractList(
+      this.product,
+      this.categoryType
+    )).map((x: any, i: number) => ({
+      number: (i + 1).toString().padStart(3, '0'),
+      ...x,
+    }));
+    this.loading = false;
+  }
+
+  async created() {
+    await this.update();
+    this.products = [
+      ...new Set(this.items.map((x: any) => x.data.contract_product)),
+    ];
+
+    this.categoryTypes = [
+      ...new Set(
+        this.items.map((x: any) => x.data.contract_product_category_type)
+      ),
+    ];
+  }
 }
 </script>
 

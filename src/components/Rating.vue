@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="rating-star">
+    <div class="rating-star" :style="{'pointer-events': readonly?'none':'initial'}">
       <svg v-for="n in 5" :key="n" :class="{rate:n<=value}" @click="value = n">
         <use xlink:href="#star"></use>
       </svg>
@@ -9,7 +9,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
       <symbol id="star" viewBox="0 0 53.867 53.867">
         <polygon
-          points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 
+          points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798
 	        10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "
         ></polygon>
       </symbol>
@@ -18,13 +18,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
+import { Component, Vue, Prop } from 'vue-property-decorator';
 @Component({
   components: {},
 })
 export default class Rating extends Vue {
-  value = 0;
+  @Prop() value;
+  @Prop() readonly;
 }
 </script>
 
@@ -34,7 +34,7 @@ export default class Rating extends Vue {
   grid-auto-flow: column;
   width: 135px;
   height: 20px;
-
+  margin-left: -8px;
   svg {
     width: 100%;
     height: 100%;
@@ -43,9 +43,6 @@ export default class Rating extends Vue {
     stroke-width: 2px;
     fill: white;
     cursor: pointer;
-    &:first-child {
-      margin-left: 0;
-    }
     &.rate {
       fill: var(--accent-color);
     }
@@ -57,7 +54,6 @@ export default class Rating extends Vue {
     fill: var(--accent-color);
     opacity: 0.8;
   }
-
   @for $i from 1 through 5 {
     svg:hover:nth-of-type(#{$i}) ~ svg:nth-of-type(n + 1) {
       fill: white;

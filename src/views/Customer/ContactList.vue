@@ -1,17 +1,19 @@
 <template>
-  <ListPageWrap :headers="headers" :items="items">
+  <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select>
-          <option value="Heat">Phone</option>
+        <select v-model="phone" @change="update">
+          <option value>Phone</option>
+          <option v-for="option in phones" :value="option" :key="option">{{ option }}</option>
         </select>
         <i class="icon-phone"></i>
         <div class="arrow-divider"></div>
       </div>
 
       <div class="form-field">
-        <select>
-          <option value="Heat">Function</option>
+        <select v-model="functionName" @change="update">
+          <option value>Function</option>
+          <option v-for="option in functionNames" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
@@ -52,20 +54,23 @@
     </template>
   </ListPageWrap>
 </template>
-    </table-template>
-  </ListPageWrap>
-</template>
+
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ListPageWrap from '@/components/ListPageWrap.vue';
 import FormCard from '@/components/FormCard.vue';
 import Rating from '@/components/Rating.vue';
-
+import * as api from '@/services/api';
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class ContactList extends Vue {
+  loading = false;  phone = '';
+  phones: any[] = [];
+  functionName = '';
+  functionNames: any[] = [];
+
   headers = [
     { text: '#', value: 'number' },
     { text: 'First Name', value: 'firstName' },
@@ -75,14 +80,33 @@ export default class ContactList extends Vue {
     { text: 'Phone', value: 'phone' },
     { text: 'Action', value: 'action', sortable: false },
   ];
-  items = [...Array(100)].map((x, i) => ({
-    number: (i + 1).toString().padStart(3, '0'),
-    firstName: 'John',
-    middleName: 'Doe',
-    surname: 'Baer',
-    email: 'John.doe@email.com',
-    phone: '0123 657 883',
-  }));
+  items = [];
+
+  async update() {
+    this.loading = true;
+    this.items = (await api.customer.getContactPersonList(
+      this.phone,
+      this.functionName
+    )).map((x: any, i: number) => ({
+      number: (i + 1).toString().padStart(3, '0'),
+      ...x,
+    }));
+    this.loading = false;
+  }
+
+  async created() {
+    await this.update();
+    this.phones = this.items.map(
+      (x: any) => x.data.customer_contact_person.customer_contact_person_telefon
+    );
+    this.phones = [...new Set(this.phones)];
+
+    this.functionNames = this.items.map(
+      (x: any) =>
+        x.data.customer_contact_person.customer_contact_person_function
+    );
+    this.functionNames = [...new Set(this.functionNames)];
+  }
 }
 </script>
 
