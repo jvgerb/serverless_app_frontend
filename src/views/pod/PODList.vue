@@ -2,22 +2,24 @@
   <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select>
-          <option value="Heat">Place</option>
+        <select v-model="place" @change="update">
+          <option value>Place</option>
+          <option v-for="option in places" :value="option" :key="option">{{ option }}</option>
         </select>
         <i class="icon-place"></i>
 
         <div class="arrow-divider"></div>
       </div>
       <div class="form-field">
-        <select>
-          <option value="Heat">Building ID</option>
+        <select v-model="buildingId" @change="update">
+          <option value>Building ID</option>
+          <option v-for="option in buildingIds" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
     </template>
     <template v-slot:table-template="slotScope">
-      <td>{{ slotScope.props.item['pODID'] }}</td>
+      <td>{{ slotScope.props.item['podId'] }}</td>
       <td>{{ slotScope.props.item['place'] }}</td>
       <td>{{ slotScope.props.item['entranceZipCode'] }}</td>
       <td>{{ slotScope.props.item['streetAddress'] }}</td>
@@ -48,20 +50,25 @@
   </ListPageWrap>
 </template>
 
-
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ListPageWrap from '@/components/ListPageWrap.vue';
 import FormCard from '@/components/FormCard.vue';
 import Rating from '@/components/Rating.vue';
+import * as api from '@/services/api';
 
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class extends Vue {
   loading = false;
+  place = '';
+  places: any[] = [];
+  buildingId = '';
+  buildingIds: any[] = [];
+
   headers = [
-    { text: 'POD ID', value: 'pODID' },
+    { text: 'POD ID', value: 'podId' },
     { text: 'Place', value: 'place' },
     { text: 'Entrance Zip Code', value: 'entranceZipCode' },
     { text: 'Street Address', value: 'streetAddress' },
@@ -72,14 +79,22 @@ export default class extends Vue {
     { text: 'Entrance Street Number', value: 'entranceStreetNumber' },
     { text: 'Action', value: 'action' },
   ];
-  items = [...Array(100)].map((x, i) => ({
-    pODID: 'POD_2501',
-    place: 'Berlin',
-    entranceZipCode: '13469',
-    streetAddress: 'Oraniendamm',
-    additionalAddressAttribute: 'Side Entrance',
-    entranceStreetNumber: '6',
-  }));
+
+  items = [];
+
+  async update() {
+    this.loading = true;
+    this.items = await api.pod.getPODList(this.place, this.buildingId);
+    this.loading = false;
+  }
+
+  async created() {
+    await this.update();
+    this.places = [...new Set(this.items.map((x: any) => x.data.place))];
+    this.buildingIds = [
+      ...new Set(this.items.map((x: any) => x.data.buildingId)),
+    ];
+  }
 }
 </script>
 

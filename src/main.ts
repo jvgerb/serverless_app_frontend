@@ -10,7 +10,14 @@ import AwsAuthConfig from './services/aws-auth-config';
 Amplify.configure({ Auth: AwsAuthConfig });
 
 Vue.use(AmplifyPlugin, AmplifyModules)
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#ad2631',
+    secondary: '#b0bec5',
+    accent: '#8c9eff',
+    error: '#b71c1c'
+  }
+})
 
 Vue.config.productionTip = false;
 

@@ -13,6 +13,10 @@ export class Supplier {
   homepage?: string;
   comment?: string;
 
+  constructor() {
+    this.supplierId = uuid();
+  }
+
   mapOut() {
     return {
       gsi_1_sk: 'supplier',

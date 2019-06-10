@@ -66,7 +66,8 @@ import * as api from '@/services/api';
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class ContractList extends Vue {
-  loading = false;  product = '';
+  loading = false;
+  product = '';
   products: any[] = [];
   partnerTypes: any[] = [];
   partnerType = '';
@@ -97,13 +98,13 @@ export default class ContractList extends Vue {
 
   async created() {
     await this.update();
-    this.products = this.items.map((x: any) => x.data.contract_product);
-    this.products = [...new Set(this.products)];
+    this.products = [
+      ...new Set(this.items.map((x: any) => x.data.contract_product)),
+    ];
 
-    this.partnerTypes = this.items.map(
-      (x: any) => x.data.contract_partner_type
-    );
-    this.partnerTypes = [...new Set(this.partnerTypes)];
+    this.partnerTypes = [
+      ...new Set(this.items.map((x: any) => x.data.contract_partner_type)),
+    ];
   }
 }
 </script>

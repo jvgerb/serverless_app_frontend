@@ -1,5 +1,5 @@
 <template>
-  <FormCard>
+  <FormCard @save="save">
     <div class="form-row">
       <div class="form-field">
         <label>Component Type</label>
@@ -57,17 +57,6 @@
         <label>Installation Date</label>
         <DatePicker placeholder="1.1.2005"></DatePicker>
       </div>
-
-      <div class="form-field">
-        <label>label</label>
-        <input type="text" placeholder="placeholder">
-      </div>
-
-      <div class="form-field">
-        <label>label</label>
-        <input type="text" placeholder="placeholder">
-      </div>
-
       <hr>
     </div>
 
@@ -90,11 +79,18 @@ import { Component, Vue } from 'vue-property-decorator';
 import FormCard from '@/components/FormCard.vue';
 import DatePicker from '@/components/DatePicker.vue';
 import Rating from '@/components/Rating.vue';
+import * as api from '@/services/api';
 
 @Component({
   components: { FormCard, DatePicker, Rating },
 })
-export default class extends Vue {}
+export default class extends Vue {
+  // data = new Model();
+
+  save() {
+    // api.entity.post(this.data);
+  }
+}
 </script>
 
 <style lang="scss" scoped>

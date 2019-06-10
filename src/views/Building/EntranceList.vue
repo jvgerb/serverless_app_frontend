@@ -2,9 +2,9 @@
   <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select v-model="streetNumber" @change="update">
-          <option value>Street Number</option>
-          <option v-for="option in streetNumbers" :value="option" :key="option">{{ option }}</option>
+        <select v-model="street" @change="update">
+          <option value>Street</option>
+          <option v-for="option in streets" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
@@ -60,8 +60,8 @@ import * as api from '@/services/api';
 export default class EntranceList extends Vue {
   loading = false;
 
-  streetNumber = '';
-  streetNumbers: any[] = [];
+  street = '';
+  streets: any[] = [];
   entranceId = '';
   entranceIds: any[] = [];
 
@@ -80,7 +80,7 @@ export default class EntranceList extends Vue {
   async update() {
     this.loading = true;
     this.items = await api.building.getEntranceList(
-      this.streetNumber,
+      this.street,
       this.entranceId
     );
     this.loading = false;
@@ -88,8 +88,8 @@ export default class EntranceList extends Vue {
 
   async created() {
     await this.update();
-    this.streetNumbers = [
-      ...new Set(this.items.map((x: any) => x.data.entrance_street_number)),
+    this.streets = [
+      ...new Set(this.items.map((x: any) => x.data.entrance_street)),
     ];
 
     this.entranceIds = [

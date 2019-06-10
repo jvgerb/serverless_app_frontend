@@ -1,5 +1,5 @@
 <template>
-  <FormCard>
+  <FormCard @save="save">
     <div class="form-row">
       <div class="form-field">
         <label>Customer ID</label>
@@ -86,7 +86,8 @@
       <div class="form-field">
         <label>Contact Person Function</label>
         <select v-model="data.сontactPersonFunction">
-          <option value></option>
+          <option value="Sales Manager">Sales Manager</option>
+          <option value="Supervisor">Supervisor</option>
         </select>
       </div>
     </div>
@@ -129,19 +130,28 @@
       <div class="form-field">
         <label>Contact Person Marital Status</label>
         <select v-model="data.сontactPersonMartialStatus">
-          <option value>- Select Option -</option>
+          <option value="single">Single</option>
+          <option value="divorced">Divorced</option>
+          <option value="married">Married</option>
         </select>
       </div>
 
       <div class="form-field">
         <label>Contact Person Political Orientation</label>
-        <input type="text" v-model="data.сontactPersonPoliticalOrientation">
+        <select v-model="data.сontactPersonPoliticalOrientation">
+          <option value="left wing">Left Wing</option>
+          <option value="right wing">Right Wing</option>
+          <option value="not sure">Not Sure</option>
+        </select>
       </div>
 
       <div class="form-field">
         <label>Contact Person Religion</label>
         <select v-model="data.сontactPersonReligion">
-          <option value>- Select Religion -</option>
+          <option value="judaite">Judaite</option>
+          <option value="muslim">Muslim</option>
+          <option value="christian">Christian</option>
+          <option value="Hare Krishna">Hare Krishna</option>
         </select>
       </div>
     </div>

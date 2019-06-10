@@ -1,6 +1,6 @@
 <template>
   <div class="form-card">
-    <button class="save-btn" @click="save">
+    <button v-if="_events.save" class="save-btn" @click="save">
       <i class="icon-floppy"></i>
       <span>Save</span>
     </button>
@@ -16,9 +16,7 @@ import { Component, Vue, Emit } from 'vue-property-decorator';
 })
 export default class FormCard extends Vue {
   @Emit()
-  save(){
-
-  }
+  save() {}
 }
 </script>
 
@@ -44,7 +42,7 @@ export default class FormCard extends Vue {
       filter: contrast(2);
     }
     &:active {
-      filter: contrast(.8);
+      filter: contrast(0.8);
     }
     i {
       font-size: 18px;

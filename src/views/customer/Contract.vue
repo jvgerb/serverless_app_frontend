@@ -1,5 +1,5 @@
 <template>
-  <FormCard>
+  <FormCard @save="save">
     <div class="form-row">
       <div class="form-field">
         <label>Customer ID</label>

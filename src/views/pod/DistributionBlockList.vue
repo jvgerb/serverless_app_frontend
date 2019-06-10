@@ -2,26 +2,28 @@
   <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select>
-          <option value="Heat">Manufacturer</option>
+        <select v-model="manufacturer" @change="update">
+          <option value>Manufacturer</option>
+          <option v-for="option in manufacturers" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
       <div class="form-field">
-        <select>
-          <option value="Heat">Designation Type</option>
+        <select v-model="designationType" @change="update">
+          <option value>Designation Type</option>
+          <option v-for="option in designationTypes" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
       <div class="form-field">
-        <select>
-          <option value="Heat">Distribution Block</option>
+        <select v-model="distributionBlock" @change="update">
+          <option value>Distribution Block</option>
+          <option v-for="option in distributionBlocks" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
     </template>
     <template v-slot:table-template="slotScope">
-      <td>{{ slotScope.props.item['componentType'] }}</td>
       <td>{{ slotScope.props.item['manufacturer'] }}</td>
       <td>{{ slotScope.props.item['designation'] }}</td>
       <td>{{ slotScope.props.item['serialNumber'] }}</td>
@@ -57,20 +59,26 @@
   </ListPageWrap>
 </template>
 
-
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ListPageWrap from '@/components/ListPageWrap.vue';
 import FormCard from '@/components/FormCard.vue';
 import Rating from '@/components/Rating.vue';
+import * as api from '@/services/api';
 
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class extends Vue {
   loading = false;
+  manufacturer = '';
+  manufacturers: any[] = [];
+  designationType = '';
+  designationTypes: any[] = [];
+  distributionBlock = '';
+  distributionBlocks: any[] = [];
+
   headers = [
-    { text: 'Component Type', value: 'componentType' },
     { text: 'Manufacturer', value: 'manufacturer' },
     { text: 'Designation', value: 'designation' },
     { text: 'Serial Number', value: 'serialNumber' },
@@ -80,22 +88,36 @@ export default class extends Vue {
     { text: 'Net purchase Price', value: 'netPurchasePrice' },
     { text: 'Action', value: 'action' },
   ];
-  items = [...Array(100)].map((x, i) => ({
-    componentType: 'Distribution Block',
-    manufacturer: 'Magra',
-    designation: 'Sinus',
-    serialNumber: '2W367K-2A',
-    purchaseDate: '01.01.1999',
-    warrantyUntil: '31.12.2004',
-    blockType: 'Pressure Afflicted',
-    netPurchasePrice: '$4,500',
-  }));
+
+  items = [];
+
+  async update() {
+    this.loading = true;
+    this.items = await api.pod.getDistributionBlockList(
+      this.manufacturer,
+      this.designationType,
+      this.distributionBlock
+    );
+    this.loading = false;
+  }
+
+  async created() {
+    await this.update();
+    this.manufacturers = [
+      ...new Set(this.items.map((x: any) => x.data.component_manufacturer)),
+    ];
+    this.designationTypes = [
+      ...new Set(
+        this.items.map((x: any) => x.data.component_base_info.type_designation)
+      ),
+    ];
+    this.distributionBlocks = [
+      ...new Set(
+        this.items.map(
+          (x: any) => x.data.distribution_block_info.distribution_block_type
+        )
+      ),
+    ];
+  }
 }
 </script>
-
-<style lang="scss" scoped>
-td:nth-child(1) {
-  color: var(--accent-color);
-}
-</style>
-

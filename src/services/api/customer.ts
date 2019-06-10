@@ -6,15 +6,13 @@ import { ContractListItem } from './models/customer/contract-list-item';
 import { ContactPersonListItem } from './models/customer/contact-person-list-item';
 import { Customer } from './models/customer/customer';
 import { ContactPerson } from './models/customer/contact-person';
-import { Representative} from './models/customer/representative';
+import { Representative } from './models/customer/representative';
 import { Contract } from './models/customer/contract';
 
 export default class extends ApiBase {
-
   @normalizeParams
   async getCustomerById(customerId: string) {
-    const result = await this.get(      `customer/${customerId}`    );
-    return result.map((x: any) => new RepresentativeListItem().map(x));
+    return await this.get(`customer/${customerId}`);;
   }
 
   @normalizeParams
@@ -34,9 +32,9 @@ export default class extends ApiBase {
   }
 
   @normalizeParams
-  async getContractList(product: string, partnerType: string, validTo: string) {
+  async getContractList(product: string, productType: string, validTo: string) {
     const result = await this.get(
-      `customer_contract/find?partner_type=${partnerType}&product=${product}&valid_to=${validTo}`
+      `customer_contract/find?product_type=${productType}&product=${product}&valid_to=${validTo}`
     );
     return result.map((x: any) => new ContractListItem().map(x));
   }
@@ -54,7 +52,7 @@ export default class extends ApiBase {
   }
 
   async postContactPerson(data: ContactPerson) {
-    if(!data.customerId) throw 'No Customer ID';
+    if (!data.customerId) throw 'No Customer ID';
 
     const customer = await this.getCustomerById(data.customerId);
     customer.customer_contact_person = data.mapOut();
@@ -62,7 +60,7 @@ export default class extends ApiBase {
   }
 
   async postRepresentative(data: Representative) {
-    if(!data.customerId) throw 'No Customer ID';
+    if (!data.customerId) throw 'No Customer ID';
 
     const customer = await this.getCustomerById(data.customerId);
     customer.customer_representative = data.mapOut();
@@ -71,11 +69,11 @@ export default class extends ApiBase {
   }
 
   async postContract(data: Contract) {
-    if(!data.customerId) throw 'No Customer ID';
+    if (!data.customerId) throw 'No Customer ID';
 
     const customer = await this.getCustomerById(data.customerId);
-    data.customerId = customer.customerId;
-    data.customerName = customer.customerName;
+    data.customerId = customer.customer_id;
+    data.customerName = customer.customer_name;
     return await this.post(`customer_contract`, data.mapOut());
   }
 }

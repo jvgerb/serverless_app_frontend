@@ -4,7 +4,7 @@
       <div class="form-field">
         <select v-model="buildingName" @change="update">
           <option value>Building Name</option>
-          <option v-for="option in buildingNames" :value="option" :key="option">{{ option }}</option>
+          <option v-for="option in buildingNames" :value="option" :key="option">{{ option}}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
@@ -12,7 +12,7 @@
       <div class="form-field">
         <select v-model="category" @change="update">
           <option value>Category</option>
-          <option v-for="option in categories" :value="option" :key="option">{{ option }}</option>
+          <option v-for="option in categories" :value="option" :key="option">{{ option | capitalize }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>

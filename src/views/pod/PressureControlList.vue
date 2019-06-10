@@ -2,20 +2,23 @@
   <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select>
-          <option value="Heat">Manufacturer</option>
+        <select v-model="manufacturer" @change="update">
+          <option value>Manufacturer</option>
+          <option v-for="option in manufacturers" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
       <div class="form-field">
-        <select>
-          <option value="Heat">Designation Type</option>
+        <select v-model="designationType" @change="update">
+          <option value>Designation Type</option>
+          <option v-for="option in designationTypes" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
       <div class="form-field">
-        <select>
-          <option value="Heat">Pressure Control Type</option>
+        <select v-model="pressureControlType" @change="update">
+          <option value>Pressure Control Type</option>
+          <option v-for="option in pressureControlTypes" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
@@ -30,7 +33,7 @@
         {{ slotScope.props.item['purchaseDate'] }}
       </td>
       <td>{{ slotScope.props.item['warrantyUntil'] }}</td>
-      <td>{{ slotScope.props.item['physicalPressureCTRLType'] }}</td>
+      <td>{{ slotScope.props.item['physicalPressureCtrlType'] }}</td>
       <td>{{ slotScope.props.item['netPurchasePrice'] }}</td>
 
       <td class="actions">
@@ -57,18 +60,25 @@
   </ListPageWrap>
 </template>
 
-
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ListPageWrap from '@/components/ListPageWrap.vue';
 import FormCard from '@/components/FormCard.vue';
 import Rating from '@/components/Rating.vue';
+import * as api from '@/services/api';
 
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class extends Vue {
   loading = false;
+  manufacturer = '';
+  manufacturers: any[] = [];
+  designationType = '';
+  designationTypes: any[] = [];
+  pressureControlType = '';
+  pressureControlTypes: any[] = [];
+
   headers = [
     { text: 'Manufacturer', value: 'manufacturer' },
     { text: 'Designation', value: 'designation' },
@@ -76,20 +86,37 @@ export default class extends Vue {
     { text: 'Serial Number', value: 'serialNumber' },
     { text: 'Purchase Date', value: 'purchaseDate' },
     { text: 'Warranty Until', value: 'warrantyUntil' },
-    { text: 'Physical Pressure CTRL Type', value: 'physicalPressureCTRLType' },
+    { text: 'Physical Pressure CTRL Type', value: 'physicalPressureCtrlType' },
     { text: 'Net purchase Price', value: 'netPurchasePrice' },
     { text: 'Action', value: 'action' },
   ];
-  items = [...Array(100)].map((x, i) => ({
-    manufacturer: 'Sauter',
-    designation: 'DSH143',
-    purchaseFrom: 'Sauter',
-    serialNumber: '2W367K-2A',
-    purchaseDate: '01.01.1999',
-    warrantyUntil: '31.12.2004',
-    physicalPressureCTRLType: 'safety valve',
-    netPurchasePrice: '$4,500',
-  }));
+
+  items = [];
+
+  async update() {
+    this.loading = true;
+    this.items = await api.pod.getPressureControlList(
+      this.manufacturer,
+      this.designationType,
+      this.pressureControlType
+    );
+    this.loading = false;
+  }
+
+  async created() {
+    await this.update();
+    this.manufacturers = [
+      ...new Set(this.items.map((x: any) => x.data.component_manufacturer)),
+    ];
+    this.designationTypes = [
+      ...new Set(
+        this.items.map((x: any) => x.data.component_base_info.type_designation)
+      ),
+    ];
+    this.pressureControlTypes = [
+      ...new Set(this.items.map((x: any) => x.data.pressure_control_info.physical_pressure_control_type)),
+    ];
+  }
 }
 </script>
 

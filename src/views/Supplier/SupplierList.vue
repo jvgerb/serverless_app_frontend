@@ -34,7 +34,7 @@
         {{ slotScope.props.item['homepage'] }}
       </td>
       <td>
-          <Rating :value="slotScope.props.item.qualityOfRelationship" :readonly="true"></Rating>
+          <Rating v-model="slotScope.props.item.qualityOfRelationship" :readonly="true"></Rating>
       </td>
       <td>
         <i class="icon-place"></i>

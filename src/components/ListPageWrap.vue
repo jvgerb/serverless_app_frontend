@@ -46,11 +46,11 @@ export default class ListPageWrap extends Vue {
   get pages() {
     if (
       this.pagination.rowsPerPage == null ||
-      this.pagination.totalItems == null
+      this.items.length == null
     )
       return 0;
 
-    return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage);
+    return Math.ceil(this.items.length / this.pagination.rowsPerPage);
   }
 
   nextPage() {

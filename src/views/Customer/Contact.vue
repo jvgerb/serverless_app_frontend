@@ -18,7 +18,8 @@
       <div class="form-field">
         <label>Salutation</label>
         <select v-model="data.salutation">
-          <option value>- Select Option -</option>
+          <option value="Mr.">Mr.</option>
+          <option value="Mrs.">Mrs.</option>
         </select>
       </div>
 
@@ -83,7 +84,10 @@
       <div class="form-field">
         <label>Religion</label>
         <select v-model="data.religion">
-          <option value>- Select Religion -</option>
+          <option value="judaite">Judaite</option>
+          <option value="muslim">Muslim</option>
+          <option value="christian">Christian</option>
+          <option value="Hare Krishna">Hare Krishna</option>
         </select>
       </div>
     </div>
@@ -92,13 +96,16 @@
       <div class="form-field">
         <label>Gender</label>
         <select v-model="data.gender">
-          <option value>- Select Gender -</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
         </select>
       </div>
       <div class="form-field">
         <label>Political Orientation</label>
         <select v-model="data.politicalOrientation">
-          <option value>- Select Political Orientation -</option>
+          <option value="left wing">Left Wing</option>
+          <option value="right wing">Right Wing</option>
+          <option value="not sure">Not Sure</option>
         </select>
       </div>
     </div>
@@ -107,7 +114,9 @@
       <div class="form-field">
         <label>Marital Status</label>
         <select v-model="data.maritalStatus">
-          <option value>- Select Status -</option>
+          <option value="single">Single</option>
+          <option value="divorced">Divorced</option>
+          <option value="married">Married</option>
         </select>
       </div>
       <div class="form-field">

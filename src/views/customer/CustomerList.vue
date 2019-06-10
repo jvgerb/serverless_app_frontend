@@ -26,7 +26,7 @@
           :key="index"
         >{{ slotScope.props.item[item.value] }}</td>
         <td>
-          <Rating :value="slotScope.props.item.relationshipQuality" :readonly="true"></Rating>
+          <Rating v-model="slotScope.props.item.relationshipQuality" :readonly="true"></Rating>
         </td>
         <td class="actions">
           <v-tooltip top>

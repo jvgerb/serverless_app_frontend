@@ -127,8 +127,6 @@ nav {
   }
 }
 .tabs-side {
-  overflow-x: auto;
-  overflow-y: hidden;
   white-space: nowrap;
   a {
     display: inline-block;

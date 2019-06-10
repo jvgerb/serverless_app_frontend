@@ -2,20 +2,23 @@
   <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select>
-          <option value="Heat">Manufacturer</option>
+        <select v-model="manufacturer" @change="update">
+          <option value>Manufacturer</option>
+          <option v-for="option in manufacturers" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
       <div class="form-field">
-        <select>
-          <option value="Heat">Designation Type</option>
+        <select v-model="designationType" @change="update">
+          <option value>Designation Type</option>
+          <option v-for="option in designationTypes" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
       <div class="form-field">
-        <select>
-          <option value="Heat">Air Exhaust System</option>
+        <select v-model="airExhaustSystem" @change="update">
+          <option value>Air Exhaust System</option>
+          <option v-for="option in airExhaustSystems" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
@@ -57,18 +60,25 @@
   </ListPageWrap>
 </template>
 
-
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ListPageWrap from '@/components/ListPageWrap.vue';
 import FormCard from '@/components/FormCard.vue';
 import Rating from '@/components/Rating.vue';
+import * as api from '@/services/api';
 
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class extends Vue {
   loading = false;
+  manufacturer = '';
+  manufacturers: any[] = [];
+  designationType = '';
+  designationTypes: any[] = [];
+  airExhaustSystem = '';
+  airExhaustSystems: any[] = [];
+
   headers = [
     { text: 'Manufacturer', value: 'manufacturer' },
     { text: 'Designation', value: 'designation' },
@@ -80,16 +90,33 @@ export default class extends Vue {
     { text: 'Net purchase Price', value: 'netPurchasePrice' },
     { text: 'Action', value: 'action' },
   ];
-  items = [...Array(100)].map((x, i) => ({
-    manufacturer: 'Unknown',
-    designation: 'Z7 / FU',
-    materialExhaustSystem: 'Copper',
-    serialNumber: '2W367K-2A',
-    purchaseDate: '01.01.1999',
-    warrantyUntil: '31.12.2004',
-    dimension: '100',
-    netPurchasePrice: '$4,500',
-  }));
+
+  items = [];
+
+  async update() {
+    this.loading = true;
+    this.items = await api.pod.getExhaustSystemList(
+      this.manufacturer,
+      this.designationType,
+      this.airExhaustSystem
+    );
+    this.loading = false;
+  }
+
+  async created() {
+    await this.update();
+    this.manufacturers = [
+      ...new Set(this.items.map((x: any) => x.data.component_manufacturer)),
+    ];
+    this.designationTypes = [
+      ...new Set(
+        this.items.map((x: any) => x.data.component_base_info.type_designation)
+      ),
+    ];
+    this.airExhaustSystems = [
+      ...new Set(this.items.map((x: any) => x.data.exhaust_system_info.air)),
+    ];
+  }
 }
 </script>
 

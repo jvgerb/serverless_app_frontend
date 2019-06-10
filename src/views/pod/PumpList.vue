@@ -2,20 +2,23 @@
   <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select>
-          <option value="Heat">Manufacturer</option>
+        <select v-model="manufacturer" @change="update">
+          <option value>Manufacturer</option>
+          <option v-for="option in manufacturers" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
       <div class="form-field">
-        <select>
-          <option value="Heat">Designation Type</option>
+        <select v-model="designationType" @change="update">
+          <option value>Designation Type</option>
+          <option v-for="option in designationTypes" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
       <div class="form-field">
-        <select>
-          <option value="Heat">Use Case</option>
+        <select v-model="useCase" @change="update">
+          <option value>Use Case</option>
+          <option v-for="option in useCases" :value="option" :key="option">{{ option }}</option>
         </select>
         <div class="arrow-divider"></div>
       </div>
@@ -57,18 +60,25 @@
   </ListPageWrap>
 </template>
 
-
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ListPageWrap from '@/components/ListPageWrap.vue';
 import FormCard from '@/components/FormCard.vue';
 import Rating from '@/components/Rating.vue';
+import * as api from '@/services/api';
 
 @Component({
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class extends Vue {
   loading = false;
+  manufacturer = '';
+  manufacturers: any[] = [];
+  designationType = '';
+  designationTypes: any[] = [];
+  useCase = '';
+  useCases: any[] = [];
+
   headers = [
     { text: 'Manufacturer', value: 'manufacturer' },
     { text: 'Designation', value: 'designation' },
@@ -80,16 +90,29 @@ export default class extends Vue {
     { text: 'Net purchase Price', value: 'netPurchasePrice' },
     { text: 'Action', value: 'action' },
   ];
-  items = [...Array(100)].map((x, i) => ({
-    manufacturer: 'Grundfos',
-    designation: 'Magna3',
-    useCasePump: 'Heating Circuit',
-    serialNumber: 'RHQQ-W*34556/',
-    purchaseDate: '01.01.1999',
-    warrantyUntil: '31.12.2004',
-    operatingHrsYear: '2,460 h',
-    netPurchasePrice: '$3,243.00',
-  }));
+
+  items = [];
+
+  async update() {
+    this.loading = true;
+    this.items = await api.pod.getPumpList(
+      this.manufacturer,
+      this.designationType,
+      this.useCase
+    );
+    this.loading = false;
+  }
+
+  async created() {
+    await this.update();
+    this.manufacturers = [
+      ...new Set(this.items.map((x: any) => x.data.component_manufacturer)),
+    ];
+    this.designationTypes = [
+      ...new Set(this.items.map((x: any) => x.data.component_base_info.type_designation)),
+    ];
+    this.useCases = [...new Set(this.items.map((x: any) => x.data.circulation_pump_info.use_case_pump))];
+  }
 }
 </script>
 

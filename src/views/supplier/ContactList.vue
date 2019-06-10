@@ -2,15 +2,6 @@
   <ListPageWrap :headers="headers" :items="items" :loading="loading">
     <template v-slot:filter-template>
       <div class="form-field">
-        <select v-model="phone" @change="update">
-          <option value>Phone</option>
-          <option v-for="option in phones" :value="option" :key="option">{{ option }}</option>
-        </select>
-        <i class="icon-phone"></i>
-        <div class="arrow-divider"></div>
-      </div>
-
-      <div class="form-field">
         <select v-model="functionName" @change="update">
           <option value>Function</option>
           <option v-for="option in functionNames" :value="option" :key="option">{{ option }}</option>
@@ -66,8 +57,7 @@ import * as api from '@/services/api';
   components: { ListPageWrap, FormCard, Rating },
 })
 export default class ContactList extends Vue {
-  loading = false;  phone = '';
-  phones: any[] = [];
+  loading = false;
   functionName = '';
   functionNames: any[] = [];
   headers = [
@@ -84,7 +74,6 @@ export default class ContactList extends Vue {
   async update() {
     this.loading = true;
     this.items = (await api.supplier.getContactPersonList(
-      this.phone,
       this.functionName
     )).map((x: any, i: number) => ({
       number: (i + 1).toString().padStart(3, '0'),
@@ -95,14 +84,6 @@ export default class ContactList extends Vue {
 
   async created() {
     await this.update();
-    this.phones = [
-      ...new Set(
-        this.items.map(
-          (x: any) =>
-            x.data.supplier_contact_person.supplier_contact_person_telefon
-        )
-      ),
-    ];
 
     this.functionNames = [
       ...new Set(

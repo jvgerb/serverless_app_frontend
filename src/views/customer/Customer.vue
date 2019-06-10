@@ -4,21 +4,19 @@
       <h5>Customer ID</h5>
 
       <div class="form-field col-3">
-        <label>Customer ID</label>
-        <input type="text" placeholder="19" v-model="data.customerId" readonly>
-      </div>
-
-      <div class="form-field col-3">
         <label>Customer type</label>
         <select>
           <option value="contact">Contact</option>
           <option value="company">Company</option>
+<!--           
+          <option value="individual">Individual</option>
+          <option value="corporation">Corporation</option> -->
         </select>
       </div>
 
       <div class="form-field col-3">
         <label>Customer Organization Name</label>
-        <input type="text"  v-model="data.customerOrganizationName">
+        <input type="text" v-model="data.customerOrganizationName">
       </div>
 
       <div class="form-field col-3">
@@ -33,7 +31,7 @@
 
       <div class="form-field col-3">
         <label>Customer Quality of Relationship</label>
-        <Rating :value="data.customerQualityOfRelationship"></Rating>
+        <Rating v-model="data.customerQualityOfRelationship"></Rating>
       </div>
     </div>
     <div class="col">
@@ -43,8 +41,8 @@
         <label>Street</label>
         <!-- <select>
           <option value="Heat">Herr</option>
-        </select> -->
-        <input type="text" placeholder="Herr"  v-model="data.billingAddressStreet">
+        </select>-->
+        <input type="text" placeholder="Herr" v-model="data.billingAddressStreet">
       </div>
 
       <div class="form-field col-3">
@@ -69,8 +67,8 @@
         <label>Street</label>
         <!-- <select>
           <option value="Heat">Herr</option>
-        </select> -->
-        <input type="text" placeholder="Herr"  v-model="data.deliveryAddressStreet">
+        </select>-->
+        <input type="text" placeholder="Herr" v-model="data.deliveryAddressStreet">
       </div>
 
       <div class="form-field col-3">
@@ -96,19 +94,18 @@ import { Component, Vue } from 'vue-property-decorator';
 import FormCard from '@/components/FormCard.vue';
 import DatePicker from '@/components/DatePicker.vue';
 import Rating from '@/components/Rating.vue';
-import {Customer as CustomerModel} from '@/services/api/models/customer/customer';
+import { Customer } from '@/services/api/models/customer/customer';
 import * as api from '@/services/api';
 
 @Component({
   components: { FormCard, DatePicker, Rating },
 })
-export default class Customer extends Vue {
-data:CustomerModel = new CustomerModel()
+export default class extends Vue {
+  data = new Customer();
 
-save(){
-  api.customer.postCustomer(this.data);
-}
-
+  save() {
+    api.customer.postCustomer(this.data);
+  }
 }
 </script>
 
